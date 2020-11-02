@@ -375,10 +375,8 @@ class TransferStatusUpdater {
                 // Update the transfer.bytesCurrent and notify the callback
                 // when the accumulated bytesCurrent exceeds the previously
                 // reported transfer.bytesCurrent.
-                if (bytesTransferredSoFar > transfer.bytesCurrent) {
-                    transfer.bytesCurrent = bytesTransferredSoFar;
-                    updateProgress(transfer.id, transfer.bytesCurrent, transfer.bytesTotal, true);
-                }
+                transfer.bytesCurrent = bytesTransferredSoFar;
+                updateProgress(transfer.id, transfer.bytesCurrent, transfer.bytesTotal, true);
             }
         }
     }
