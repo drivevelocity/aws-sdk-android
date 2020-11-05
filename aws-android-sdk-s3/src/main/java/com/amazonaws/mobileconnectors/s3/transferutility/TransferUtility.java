@@ -821,7 +821,8 @@ public class TransferUtility {
         final List<Integer> transferIds = getTransferIdsWithTypeAndStates(type,
                 new TransferState[] {TransferState.PAUSED, 
                     TransferState.FAILED, 
-                    TransferState.CANCELED});
+                    TransferState.CANCELED,
+                    TransferState.WAITING_FOR_NETWORK});
 
         for (final Integer transferId : transferIds) {
             observers.add(resume(transferId));
