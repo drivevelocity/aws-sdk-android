@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class GetAccessKeyInfoResult implements Serializable {
     /**
      * <p>
-     * The number used to identify the AWS account.
+     * The number used to identify the Amazon Web Services account.
      * </p>
      */
     private String account;
 
     /**
      * <p>
-     * The number used to identify the AWS account.
+     * The number used to identify the Amazon Web Services account.
      * </p>
      *
      * @return <p>
-     *         The number used to identify the AWS account.
+     *         The number used to identify the Amazon Web Services account.
      *         </p>
      */
     public String getAccount() {
@@ -40,11 +40,11 @@ public class GetAccessKeyInfoResult implements Serializable {
 
     /**
      * <p>
-     * The number used to identify the AWS account.
+     * The number used to identify the Amazon Web Services account.
      * </p>
      *
      * @param account <p>
-     *            The number used to identify the AWS account.
+     *            The number used to identify the Amazon Web Services account.
      *            </p>
      */
     public void setAccount(String account) {
@@ -53,14 +53,14 @@ public class GetAccessKeyInfoResult implements Serializable {
 
     /**
      * <p>
-     * The number used to identify the AWS account.
+     * The number used to identify the Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param account <p>
-     *            The number used to identify the AWS account.
+     *            The number used to identify the Amazon Web Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

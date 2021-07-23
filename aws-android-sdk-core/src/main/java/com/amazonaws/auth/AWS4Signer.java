@@ -250,8 +250,14 @@ public class AWS4Signer extends AbstractAWSSigner
 
     protected String getCanonicalRequest(Request<?> request, String contentSha256) {
         /* This would url-encode the resource path for the first time */
-        final String path = HttpUtils.appendUri(request.getEndpoint().getPath(),
-                request.getResourcePath());
+        String path;
+        if(request.getEncodedUriResourcePath()!= null){
+            path = HttpUtils.appendUriEncoded(request.getEndpoint().getPath(),
+                    request.getEncodedUriResourcePath());
+        }else{
+            path = HttpUtils.appendUri(request.getEndpoint().getPath(),
+                    request.getResourcePath());
+        };
 
         final String canonicalRequest =
                 request.getHttpMethod().toString() + "\n" +
@@ -317,7 +323,7 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected final long getDateFromRequest(Request<?> request) {
-        final int timeOffset = getTimeOffset(request);
+        final long timeOffset = getTimeOffset(request);
         Date date = getSignatureDate(timeOffset);
         if (overriddenDate != null) {
             date = overriddenDate;

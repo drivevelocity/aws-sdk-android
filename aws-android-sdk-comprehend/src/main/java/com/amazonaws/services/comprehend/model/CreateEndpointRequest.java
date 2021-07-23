@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -87,6 +87,19 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * </p>
      */
     private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     */
+    private String dataAccessRoleArn;
 
     /**
      * <p>
@@ -462,6 +475,78 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the AWS identity and Access
+     *         Management (IAM) role that grants Amazon Comprehend read access
+     *         to trained custom models encrypted with a customer managed key
+     *         (ModelKmsKeyId).
+     *         </p>
+     */
+    public String getDataAccessRoleArn() {
+        return dataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param dataAccessRoleArn <p>
+     *            The Amazon Resource Name (ARN) of the AWS identity and Access
+     *            Management (IAM) role that grants Amazon Comprehend read
+     *            access to trained custom models encrypted with a customer
+     *            managed key (ModelKmsKeyId).
+     *            </p>
+     */
+    public void setDataAccessRoleArn(String dataAccessRoleArn) {
+        this.dataAccessRoleArn = dataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param dataAccessRoleArn <p>
+     *            The Amazon Resource Name (ARN) of the AWS identity and Access
+     *            Management (IAM) role that grants Amazon Comprehend read
+     *            access to trained custom models encrypted with a customer
+     *            managed key (ModelKmsKeyId).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEndpointRequest withDataAccessRoleArn(String dataAccessRoleArn) {
+        this.dataAccessRoleArn = dataAccessRoleArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -481,7 +566,9 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
         if (getClientRequestToken() != null)
             sb.append("ClientRequestToken: " + getClientRequestToken() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getDataAccessRoleArn() != null)
+            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn());
         sb.append("}");
         return sb.toString();
     }
@@ -500,6 +587,8 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode
                 + ((getClientRequestToken() == null) ? 0 : getClientRequestToken().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         return hashCode;
     }
 
@@ -536,6 +625,11 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getDataAccessRoleArn() == null ^ this.getDataAccessRoleArn() == null)
+            return false;
+        if (other.getDataAccessRoleArn() != null
+                && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
             return false;
         return true;
     }

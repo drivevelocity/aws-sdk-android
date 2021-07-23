@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,19 +21,58 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a list of all tags for the specified customer master key (CMK).
+ * Returns all tags on the specified customer master key (CMK).
  * </p>
  * <p>
- * You cannot perform this operation on a CMK in a different AWS account.
+ * For general information about tags, including the format and syntax, see <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
+ * AWS resources</a> in the <i>Amazon Web Services General Reference</i>. For
+ * information about using tags in AWS KMS, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/tagging-keys.html"
+ * >Tagging keys</a>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
+ * different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:ListResourceTags</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateKey</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ReplicateKey</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>TagResource</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>UntagResource</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class ListResourceTagsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets tags on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -96,10 +135,10 @@ public class ListResourceTagsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets tags on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -126,10 +165,10 @@ public class ListResourceTagsRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key (CMK).
+     *         Gets tags on the specified customer master key (CMK).
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         Specify the key ID or key ARN of the CMK.
      *         </p>
      *         <p>
      *         For example:
@@ -158,10 +197,10 @@ public class ListResourceTagsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets tags on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -188,11 +227,10 @@ public class ListResourceTagsRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Gets tags on the specified customer master key (CMK).
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:
@@ -221,10 +259,10 @@ public class ListResourceTagsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets tags on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -254,11 +292,10 @@ public class ListResourceTagsRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Gets tags on the specified customer master key (CMK).
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:

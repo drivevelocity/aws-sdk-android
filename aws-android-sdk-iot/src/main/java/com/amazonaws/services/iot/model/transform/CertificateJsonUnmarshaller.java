@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,6 +43,9 @@ class CertificateJsonUnmarshaller implements Unmarshaller<Certificate, JsonUnmar
                         .unmarshall(context));
             } else if (name.equals("status")) {
                 certificate.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("certificateMode")) {
+                certificate.setCertificateMode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("creationDate")) {
                 certificate.setCreationDate(DateJsonUnmarshaller.getInstance()

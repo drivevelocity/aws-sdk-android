@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS account ID for the user pool owner.
+     * The account ID for the user pool owner.
      * </p>
      */
     private String aWSAccountId;
@@ -157,11 +157,11 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS account ID for the user pool owner.
+     * The account ID for the user pool owner.
      * </p>
      *
      * @return <p>
-     *         The AWS account ID for the user pool owner.
+     *         The account ID for the user pool owner.
      *         </p>
      */
     public String getAWSAccountId() {
@@ -170,11 +170,11 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS account ID for the user pool owner.
+     * The account ID for the user pool owner.
      * </p>
      *
      * @param aWSAccountId <p>
-     *            The AWS account ID for the user pool owner.
+     *            The account ID for the user pool owner.
      *            </p>
      */
     public void setAWSAccountId(String aWSAccountId) {
@@ -183,14 +183,14 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS account ID for the user pool owner.
+     * The account ID for the user pool owner.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param aWSAccountId <p>
-     *            The AWS account ID for the user pool owner.
+     *            The account ID for the user pool owner.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

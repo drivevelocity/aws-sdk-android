@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,6 +22,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Remove the specified thing from the specified group.
+ * </p>
+ * <p>
+ * You must specify either a <code>thingGroupArn</code> or a
+ * <code>thingGroupName</code> to identify the thing group and either a
+ * <code>thingArn</code> or a <code>thingName</code> to identify the thing to
+ * remove from the thing group.
  * </p>
  */
 public class RemoveThingFromThingGroupRequest extends AmazonWebServiceRequest implements

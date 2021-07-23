@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,17 +24,41 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets the names of the key policies that are attached to a customer master key
  * (CMK). This operation is designed to get policy names that you can use in a
  * <a>GetKeyPolicy</a> operation. However, the only valid policy name is
- * <code>default</code>. You cannot perform this operation on a CMK in a
+ * <code>default</code>.
+ * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
  * different AWS account.
  * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:ListKeyPolicies</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>GetKeyPolicy</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>PutKeyPolicy</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets the names of key policies for the specified customer master key
+     * (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -96,10 +120,11 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets the names of key policies for the specified customer master key
+     * (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -126,10 +151,11 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key (CMK).
+     *         Gets the names of key policies for the specified customer master
+     *         key (CMK).
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         Specify the key ID or key ARN of the CMK.
      *         </p>
      *         <p>
      *         For example:
@@ -158,10 +184,11 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets the names of key policies for the specified customer master key
+     * (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -188,11 +215,11 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Gets the names of key policies for the specified customer
+     *            master key (CMK).
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:
@@ -221,10 +248,11 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Gets the names of key policies for the specified customer master key
+     * (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -254,11 +282,11 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Gets the names of key policies for the specified customer
+     *            master key (CMK).
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:

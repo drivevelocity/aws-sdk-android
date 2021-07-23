@@ -38,7 +38,9 @@ import java.util.UUID;
 
 /**
  * Signer implementation that signs requests with the AWS3 signing protocol.
+ * @deprecated SigV3 is deprecated. Use SigV4 instead via {@link AWS4Signer}
  */
+@Deprecated
 public class AWS3Signer extends AbstractAWSSigner {
     private static final String AUTHORIZATION_HEADER = "X-Amzn-Authorization";
     private static final String NONCE_HEADER = "x-amz-nonce";
@@ -72,7 +74,7 @@ public class AWS3Signer extends AbstractAWSSigner {
         SigningAlgorithm algorithm = SigningAlgorithm.HmacSHA256;
         String nonce = UUID.randomUUID().toString();
 
-        int timeOffset = getTimeOffset(request);
+        long timeOffset = getTimeOffset(request);
         Date dateValue = getSignatureDate(timeOffset);
         String date = DateUtils.formatRFC822Date(dateValue);
         boolean isHttps = false;

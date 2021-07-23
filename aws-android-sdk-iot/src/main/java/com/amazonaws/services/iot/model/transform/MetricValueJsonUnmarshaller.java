@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -45,6 +45,19 @@ class MetricValueJsonUnmarshaller implements Unmarshaller<MetricValue, JsonUnmar
                                 .unmarshall(context));
             } else if (name.equals("ports")) {
                 metricValue.setPorts(new ListUnmarshaller<Integer>(IntegerJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("number")) {
+                metricValue.setNumber(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("numbers")) {
+                metricValue.setNumbers(new ListUnmarshaller<Double>(DoubleJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("strings")) {
+                metricValue.setStrings(new ListUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));

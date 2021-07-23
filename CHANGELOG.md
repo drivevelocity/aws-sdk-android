@@ -1,4 +1,235 @@
-# Change Log - AWS SDK for Android
+## [Release 2.27.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.27.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#2526)
+- **aws-android-sdk-sns:** update models to latest (#2534)
+- **aws-android-sdk-lambda:** update models to latest (#2535)
+- **aws-android-sdk-core:** update models to latest (#2537)
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2541)
+- **aws-android-sdk-location:** update models to latest (#2544)
+- Changes to support encoded resource path coming in request. (#2546)
+
+### Bug Fixes
+- **aws-android-sdk-iot:** Use cert chain to connect to IoT Core (#2521)
+- **aws-android-sdk-cognitoauth:** custom tabs app crash when chrome not available (#2529)
+
+
+[See all changes between 2.26.0 and 2.27.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.26.0...release_v2.27.0)
+
+## [Release 2.26.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.26.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#2516)
+- **aws-android-sdk-kms:** update models to latest (#2518)
+
+### Bug Fixes
+- **aws-android-sdk-s3:** implement retry mechanism for upload part (#2504)
+
+[See all changes between 2.25.0 and 2.26.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.25.0...release_v2.26.0)
+
+## [Release 2.25.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.25.0)
+
+### Features
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2510)
+
+### Bug Fixes
+- **aws-android-sdk-lex:** prioritize custom lex signer for all regions (#2506)
+- **mobileclient:** Honor auth flow setting from config (#2499)
+- **aws-android-sdk-polly:** use correct SignerConfig in all regions (#2505)
+
+[See all changes between 2.24.0 and 2.25.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.24.0...release_v2.25.0)
+
+## [Release 2.24.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.24.0)
+
+### Features
+- **aws-android-sdk-sns:** update models to latest (#2461)
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2456)
+- **aws-android-sdk-connect:** update models to latest (#2469)
+- **aws-android-sdk-transcribe:** update models to latest (#2476)
+- **aws-android-sdk-rekognition:** update models to latest (#2487)
+- **aws-android-sdk-iot:** update models to latest (#2490)
+- **aws-android-sdk-location:** update models to latest (#2494)
+- **aws-android-sdk-sns:** update models to latest (#2496)
+- **aws-android-sdk-polly:** update models to latest (#2497)
+- **aws-android-sdk-mobile-client:** adds signature with user attributes in confirmSignIn (#2492)
+- **aws-android-sdk-mobile-client:** hosted-ui auth response handler is now built into redirect activity (#2473)
+
+### Bug Fixes
+- hosted-ui sign-out flow is now launched correctly using custom tabs manager (#2472)
+- hostedUI auth response is now properly handled via `HostedUIRedirectActivity` (#2473)
+  - _note:_ applying above fix requires an update to `AndroidManifest.xml`. See the [documentation](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app) for more information.
+
+[See all changes between 2.23.0 and 2.24.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.23.0...release_v2.24.0)
+
+## [Release 2.23.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.23.0)
+
+### New Features
+- **aws-android-sdk-cognitoidentityprovider:** support custom endpoint (#2455)
+
+### Bug Fixes
+- **pinpoint:** add campaign attributes to push events (#2458)
+
+[See all changes between 2.22.7 and 2.23.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.7...release_v2.23.0)
+
+## [Release 2.22.7](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.22.7)
+
+### Features
+- **aws-android-sdk-core:** update models to latest (#2445)
+
+### Bug Fixes
+- **mobile-client:** missing optional dependency warning removed (#2427)
+- **s3:** remove eTag validation logic (#2419)
+- **s3:** force upload part tasks to be serial (#2447)
+
+### Miscellaneous
+- change the time offset precision from int to long (#2448)
+
+[See all changes between 2.22.6 and 2.22.7](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.6...release_v2.22.7)
+
+
+## [Release 2.22.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.6)
+
+### Bug fixes
+ - Updated Service name for Lex runtime
+
+### Model updates
+ - Amazon Comprehend
+ - Amazon Kinesis Video Streams Archived Media
+ - Amazon Lex
+ - Amazon Location Service
+ - Amazon Transcribe
+ - AWS Machine Learning
+ - AWS IoT
+
+## [Release 2.22.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.5)
+
+### Bug fixes
+- **AWSMobileClient**
+  - Changes from v2.22.3 caused `USER_SRP_AUTH` auth flow type to be unrecognizable. The change was reverted.
+
+## [Release 2.22.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.4)
+
+### Bug fixes
+- **AWSMobileClient**
+  - Changes from v2.22.3 caused optional dependencies to become required during initialization. Fixed in [#2393](https://github.com/aws-amplify/aws-sdk-android/pull/2393).
+
+### Model updates
+- Amazon Comprehend
+- Amazon Rekognition
+
+## [Release 2.22.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.3)
+
+### Misc.
+- **AWSMobileClient**
+  - Honored authenticationFlowType from config [#2377](https://github.com/aws-amplify/aws-sdk-android/pull/2377)
+  - Initialized key value store inside mobile client constructor [#2383](https://github.com/aws-amplify/aws-sdk-android/pull/2383)
+  - Registered sign in providers for dropInUI [#2386](https://github.com/aws-amplify/aws-sdk-android/pull/2386)
+
+### Model updates
+ - Amazon Connect
+
+## [Release 2.22.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.2)
+
+### Misc.
+ - Removed references to SigV3 signers in favor of SigV4 signers. See [#2341](https://github.com/aws-amplify/aws-sdk-android/pull/2341).
+
+### Model updates
+ - Amazon Connect
+ - Amazon Location
+ - AWS IoT
+ - AWS Lambda
+
+## [Release 2.22.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.1)
+
+### Misc.
+ - Amazon Cognito Identity Provider: Set session paraemter for DEVICE_SRP_AUTH request
+
+## [Release 2.22.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.0)
+
+### Model updates
+ - Amazon Cognito Identity Pools
+ - Amazon Simple Notification Service
+ - AWS Key Management Service
+
+### Misc.
+ - Removed deprecated Transfer Manager client [#2285](https://github.com/aws-amplify/aws-sdk-android/pull/2285)
+ - Improved AWS Region code extraction for IoT client [#2325](https://github.com/aws-amplify/aws-sdk-android/pull/2325)
+
+## [Release 2.21.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.21.0)
+
+### New Features
+
+- **AWSMobileClient**
+  - Added custom challenge for first method overload of `confirmSignIn`. See [PR #2316](https://github.com/aws-amplify/aws-sdk-android/pull/2316).
+
+### Model updates
+ - Amazon Connect
+
+### Misc.
+ - Removed deprecated Mobile Analytics Client [#2321](https://github.com/aws-amplify/aws-sdk-android/pull/2321)
+ - Removed deprecated Cognito Sync Client [#2320](https://github.com/aws-amplify/aws-sdk-android/pull/2320)
+
+## [Release 2.20.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.20.1)
+
+## Bug Fixes
+ - Fixed an Amazon Location client bug where the trackerName was being set to the deviceId instead of the trackerName.  See [PR #2298](https://github.com/aws-amplify/aws-sdk-android/pull/2298).
+
+### Model updates
+ - Amazon Key Management Service (KMS)
+
+## [Release 2.20.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.20.0)
+
+### New Features
+ - Amazon Location Service
+
+### Model updates
+ - AWS IoT
+
+## [Release 2.19.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.4)
+
+### New Features
+
+- **Amazon DynamoDB**
+  - Added `keyConditionExpression` to `DynamoDBQueryExpression` class. See [PR #2280](https://github.com/aws-amplify/aws-sdk-android/pull/2280).
+
+- **Amazon Cognito Identity Provider**
+  - Fixed bug where client was sending invalid secret hash during `NewPasswordContinuation` flow. See [PR #2265](https://github.com/aws-amplify/aws-sdk-android/pull/2265).
+  - Reduced default threshold for refresh tokens from 5 minutes to 2 minutes. See [Issue #2232](https://github.com/aws-amplify/aws-sdk-android/issues/2232).
+
+### Model updates
+  - Amazon Cognito Identity Provider
+  - Amazon Connect
+  - Amazon Comprehend
+  - Amazon Translate
+  - AWS IoT
+  - AWS Lambda
+
+### Misc.
+  - Removed Apache Commons Logging dependency
+
+## [Release 2.19.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.3)
+
+### New Features
+
+- **AWS IOT**
+  - Added getSessionPresent() to AWSIotMqttManager.  The session present flag tells the client whether the broker already has a persistent session available from previous interactions with the client.  See the [MQTT documentation](https://www.hivemq.com/blog/mqtt-essentials-part-3-client-broker-connection-establishment/) for more details on its use.  [#2231](https://github.com/aws-amplify/aws-sdk-android/pull/2231)
+
+## [Release 2.19.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.2)
+
+### New Features
+
+- **AWS S3 Transfer Utility**
+  - Now supports directly uploading `InputStream` object via `TransferUtility`. See [# 2182](https://github.com/aws-amplify/aws-sdk-android/pull/2182) for more details.
+
+### Model updates
+  - AWS IoT
+  - AWS Lambda
+  - Amazon Polly
+  - Amazon Textract
+
+### Misc.
+  - Fixed typo in `CognitoCredentialsProvider#getSessionCredentialsExpiration()`.
+  - Updated `customer-proguard-rules.pro` to exclude `Enum` types when `minifyEnabled = true`.
 
 ## [Release 2.19.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.1)
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,17 +20,17 @@ import com.amazonaws.regions.*;
 import com.amazonaws.services.lambda.model.*;
 
 /**
- * Interface for accessing AWS Lambda <fullname>AWS Lambda</fullname>
+ * Interface for accessing AWS Lambda <fullname>Lambda</fullname>
  * <p>
  * <b>Overview</b>
  * </p>
  * <p>
- * This is the <i>AWS Lambda API Reference</i>. The AWS Lambda Developer Guide
- * provides additional information. For the service overview, see <a
- * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS
+ * This is the <i>Lambda API Reference</i>. The Lambda Developer Guide provides
+ * additional information. For the service overview, see <a
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is
  * Lambda</a>, and for information about how the service works, see <a href=
- * "https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">AWS
- * Lambda: How it Works</a> in the <b>AWS Lambda Developer Guide</b>.
+ * "https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"
+ * >Lambda: How it Works</a> in the <b>Lambda Developer Guide</b>.
  * </p>
  **/
 public interface AWSLambda {
@@ -150,8 +150,9 @@ public interface AWSLambda {
      * long connections with timeout or keep-alive settings.
      * </p>
      * <p>
-     * This operation requires permission for the
-     * <code>lambda:InvokeFunction</code> action.
+     * This operation requires permission for the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html"
+     * >lambda:InvokeFunction</a> action.
      * </p>
      * 
      * @param invokeRequest
@@ -167,6 +168,10 @@ public interface AWSLambda {
      * @throws EC2UnexpectedException
      * @throws SubnetIPAddressLimitReachedException
      * @throws ENILimitReachedException
+     * @throws EFSMountConnectivityException
+     * @throws EFSMountFailureException
+     * @throws EFSMountTimeoutException
+     * @throws EFSIOException
      * @throws EC2ThrottledException
      * @throws EC2AccessDeniedException
      * @throws InvalidSubnetIDException

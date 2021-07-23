@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,20 +21,30 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API places an outbound call to a contact, and then initiates the contact
- * flow. It performs the actions in the contact flow that's specified (in
+ * Places an outbound call to a contact, and then initiates the contact flow. It
+ * performs the actions in the contact flow that's specified (in
  * <code>ContactFlowId</code>).
  * </p>
  * <p>
- * Agents are not involved in initiating the outbound API (that is, dialing the
- * contact). If the contact flow places an outbound call to a contact, and then
- * puts the contact in queue, that's when the call is routed to the agent, like
+ * Agents do not initiate the outbound API, which means that they do not dial
+ * the contact. If the contact flow places an outbound call to a contact, and
+ * then puts the contact in queue, the call is then routed to the agent, like
  * any other inbound case.
  * </p>
  * <p>
- * There is a 60 second dialing timeout for this operation. If the call is not
+ * There is a 60-second dialing timeout for this operation. If the call is not
  * connected after 60 seconds, it fails.
  * </p>
+ * <note>
+ * <p>
+ * UK numbers with a 447 prefix are not allowed by default. Before you can dial
+ * these UK mobile numbers, you must submit a service quota increase request.
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+ * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
+ * </p>
+ * </note>
  */
 public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -47,7 +57,16 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call.
+     * The identifier of the contact flow for the outbound call. To see the
+     * ContactFlowId in the Amazon Connect console user interface, on the
+     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
+     * contact flow. On the contact flow page, under the name of the contact
+     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
+     * is the last part of the ARN, shown here in bold:
+     * </p>
+     * <p>
+     * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
+     * xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,7 +76,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,8 +89,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
      * idempotency of the request. The token is valid for 7 days after creation.
-     * If a contact is already started, the contact ID is returned. If the
-     * contact is disconnected, a new contact is started.
+     * If a contact is already started, the contact ID is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,14 +177,34 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call.
+     * The identifier of the contact flow for the outbound call. To see the
+     * ContactFlowId in the Amazon Connect console user interface, on the
+     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
+     * contact flow. On the contact flow page, under the name of the contact
+     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
+     * is the last part of the ARN, shown here in bold:
+     * </p>
+     * <p>
+     * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
+     * xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow for the outbound call.
+     *         The identifier of the contact flow for the outbound call. To see
+     *         the ContactFlowId in the Amazon Connect console user interface,
+     *         on the navigation menu go to <b>Routing</b>, <b>Contact
+     *         Flows</b>. Choose the contact flow. On the contact flow page,
+     *         under the name of the contact flow, choose <b>Show additional
+     *         flow information</b>. The ContactFlowId is the last part of the
+     *         ARN, shown here in bold:
+     *         </p>
+     *         <p>
+     *         arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
+     *         xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>
+     *         846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
      *         </p>
      */
     public String getContactFlowId() {
@@ -174,14 +213,34 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call.
+     * The identifier of the contact flow for the outbound call. To see the
+     * ContactFlowId in the Amazon Connect console user interface, on the
+     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
+     * contact flow. On the contact flow page, under the name of the contact
+     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
+     * is the last part of the ARN, shown here in bold:
+     * </p>
+     * <p>
+     * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
+     * xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow for the outbound call.
+     *            The identifier of the contact flow for the outbound call. To
+     *            see the ContactFlowId in the Amazon Connect console user
+     *            interface, on the navigation menu go to <b>Routing</b>,
+     *            <b>Contact Flows</b>. Choose the contact flow. On the contact
+     *            flow page, under the name of the contact flow, choose <b>Show
+     *            additional flow information</b>. The ContactFlowId is the last
+     *            part of the ARN, shown here in bold:
+     *            </p>
+     *            <p>
+     *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
+     *            xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>
+     *            846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
      *            </p>
      */
     public void setContactFlowId(String contactFlowId) {
@@ -190,7 +249,16 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call.
+     * The identifier of the contact flow for the outbound call. To see the
+     * ContactFlowId in the Amazon Connect console user interface, on the
+     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
+     * contact flow. On the contact flow page, under the name of the contact
+     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
+     * is the last part of the ARN, shown here in bold:
+     * </p>
+     * <p>
+     * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
+     * xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -200,7 +268,18 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow for the outbound call.
+     *            The identifier of the contact flow for the outbound call. To
+     *            see the ContactFlowId in the Amazon Connect console user
+     *            interface, on the navigation menu go to <b>Routing</b>,
+     *            <b>Contact Flows</b>. Choose the contact flow. On the contact
+     *            flow page, under the name of the contact flow, choose <b>Show
+     *            additional flow information</b>. The ContactFlowId is the last
+     *            part of the ARN, shown here in bold:
+     *            </p>
+     *            <p>
+     *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
+     *            xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>
+     *            846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -212,14 +291,16 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -228,14 +309,16 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -244,7 +327,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -254,7 +338,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -268,8 +353,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
      * idempotency of the request. The token is valid for 7 days after creation.
-     * If a contact is already started, the contact ID is returned. If the
-     * contact is disconnected, a new contact is started.
+     * If a contact is already started, the contact ID is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -279,8 +363,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *         A unique, case-sensitive identifier that you provide to ensure
      *         the idempotency of the request. The token is valid for 7 days
      *         after creation. If a contact is already started, the contact ID
-     *         is returned. If the contact is disconnected, a new contact is
-     *         started.
+     *         is returned.
      *         </p>
      */
     public String getClientToken() {
@@ -291,8 +374,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
      * idempotency of the request. The token is valid for 7 days after creation.
-     * If a contact is already started, the contact ID is returned. If the
-     * contact is disconnected, a new contact is started.
+     * If a contact is already started, the contact ID is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -302,8 +384,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *            A unique, case-sensitive identifier that you provide to ensure
      *            the idempotency of the request. The token is valid for 7 days
      *            after creation. If a contact is already started, the contact
-     *            ID is returned. If the contact is disconnected, a new contact
-     *            is started.
+     *            ID is returned.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -314,8 +395,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
      * idempotency of the request. The token is valid for 7 days after creation.
-     * If a contact is already started, the contact ID is returned. If the
-     * contact is disconnected, a new contact is started.
+     * If a contact is already started, the contact ID is returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -328,8 +408,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *            A unique, case-sensitive identifier that you provide to ensure
      *            the idempotency of the request. The token is valid for 7 days
      *            after creation. If a contact is already started, the contact
-     *            ID is returned. If the contact is disconnected, a new contact
-     *            is started.
+     *            ID is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

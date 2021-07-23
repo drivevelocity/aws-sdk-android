@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ public class UpdateTopicRuleDestinationRequest extends AmazonWebServiceRequest i
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      */
     private String status;
 
@@ -175,7 +175,7 @@ public class UpdateTopicRuleDestinationRequest extends AmazonWebServiceRequest i
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @return <p>
      *         The status of the topic rule destination. Valid values are:
@@ -273,7 +273,7 @@ public class UpdateTopicRuleDestinationRequest extends AmazonWebServiceRequest i
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:
@@ -379,7 +379,7 @@ public class UpdateTopicRuleDestinationRequest extends AmazonWebServiceRequest i
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:
@@ -485,7 +485,7 @@ public class UpdateTopicRuleDestinationRequest extends AmazonWebServiceRequest i
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:
@@ -591,7 +591,7 @@ public class UpdateTopicRuleDestinationRequest extends AmazonWebServiceRequest i
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:

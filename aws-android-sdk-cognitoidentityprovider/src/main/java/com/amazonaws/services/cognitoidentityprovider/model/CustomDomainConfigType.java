@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,9 +26,8 @@ import java.io.Serializable;
 public class CustomDomainConfigType implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL
-     * certificate. You use this certificate for the subdomain of your custom
-     * domain.
+     * The Amazon Resource Name (ARN) of an Certificate Manager SSL certificate.
+     * You use this certificate for the subdomain of your custom domain.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,9 +40,8 @@ public class CustomDomainConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL
-     * certificate. You use this certificate for the subdomain of your custom
-     * domain.
+     * The Amazon Resource Name (ARN) of an Certificate Manager SSL certificate.
+     * You use this certificate for the subdomain of your custom domain.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +51,7 @@ public class CustomDomainConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL
+     *         The Amazon Resource Name (ARN) of an Certificate Manager SSL
      *         certificate. You use this certificate for the subdomain of your
      *         custom domain.
      *         </p>
@@ -64,9 +62,8 @@ public class CustomDomainConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL
-     * certificate. You use this certificate for the subdomain of your custom
-     * domain.
+     * The Amazon Resource Name (ARN) of an Certificate Manager SSL certificate.
+     * You use this certificate for the subdomain of your custom domain.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,8 +73,8 @@ public class CustomDomainConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param certificateArn <p>
-     *            The Amazon Resource Name (ARN) of an AWS Certificate Manager
-     *            SSL certificate. You use this certificate for the subdomain of
+     *            The Amazon Resource Name (ARN) of an Certificate Manager SSL
+     *            certificate. You use this certificate for the subdomain of
      *            your custom domain.
      *            </p>
      */
@@ -87,9 +84,8 @@ public class CustomDomainConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL
-     * certificate. You use this certificate for the subdomain of your custom
-     * domain.
+     * The Amazon Resource Name (ARN) of an Certificate Manager SSL certificate.
+     * You use this certificate for the subdomain of your custom domain.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -102,8 +98,8 @@ public class CustomDomainConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param certificateArn <p>
-     *            The Amazon Resource Name (ARN) of an AWS Certificate Manager
-     *            SSL certificate. You use this certificate for the subdomain of
+     *            The Amazon Resource Name (ARN) of an Certificate Manager SSL
+     *            certificate. You use this certificate for the subdomain of
      *            your custom domain.
      *            </p>
      * @return A reference to this updated object so that method calls can be

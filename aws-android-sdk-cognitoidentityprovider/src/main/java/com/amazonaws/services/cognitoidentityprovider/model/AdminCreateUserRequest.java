@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,30 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If <code>MessageAction</code> is not set, the default is to send a welcome
  * message via email or phone (SMS).
  * </p>
+ * <note>
+ * <p>
+ * This action might generate an SMS text message. Starting June 1, 2021, U.S.
+ * telecom carriers require that you register an origination phone number before
+ * you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+ * in Amazon Cognito, you must register a phone number with <a
+ * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>.
+ * Cognito will use the the registered number automatically. Otherwise, Cognito
+ * users that must receive SMS messages might be unable to sign up, activate
+ * their accounts, or sign in.
+ * </p>
+ * <p>
+ * If you have never used SMS text messages with Amazon Cognito or any other
+ * Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+ * <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
+ * sandbox mode</a> </i>, you’ll have limitations, such as sending messages to
+ * only verified phone numbers. After testing in the sandbox environment, you
+ * can move out of the SMS sandbox and into production. For more information,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * > SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+ * Developer Guide</i>.
+ * </p>
+ * </note>
  * <p>
  * This message is based on a template that you configured in your call to
  * create or update a user pool. This template includes your custom sign-up
@@ -220,14 +244,14 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the AdminCreateUser API action, Amazon
-     * Cognito invokes the function that is assigned to the <i>pre sign-up</i>
-     * trigger. When Amazon Cognito invokes this function, it passes a JSON
-     * payload, which the function receives as input. This payload contains a
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the AdminCreateUser API action, Amazon Cognito
+     * invokes the function that is assigned to the <i>pre sign-up</i> trigger.
+     * When Amazon Cognito invokes this function, it passes a JSON payload,
+     * which the function receives as input. This payload contains a
      * <code>clientMetadata</code> attribute, which provides the data that you
      * assigned to the ClientMetadata parameter in your AdminCreateUser request.
-     * In your function code in AWS Lambda, you can process the
+     * In your function code in Lambda, you can process the
      * <code>clientMetadata</code> value to enhance your workflow for your
      * specific needs.
      * </p>
@@ -246,7 +270,7 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -1602,14 +1626,14 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the AdminCreateUser API action, Amazon
-     * Cognito invokes the function that is assigned to the <i>pre sign-up</i>
-     * trigger. When Amazon Cognito invokes this function, it passes a JSON
-     * payload, which the function receives as input. This payload contains a
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the AdminCreateUser API action, Amazon Cognito
+     * invokes the function that is assigned to the <i>pre sign-up</i> trigger.
+     * When Amazon Cognito invokes this function, it passes a JSON payload,
+     * which the function receives as input. This payload contains a
      * <code>clientMetadata</code> attribute, which provides the data that you
      * assigned to the ClientMetadata parameter in your AdminCreateUser request.
-     * In your function code in AWS Lambda, you can process the
+     * In your function code in Lambda, you can process the
      * <code>clientMetadata</code> value to enhance your workflow for your
      * specific needs.
      * </p>
@@ -1628,7 +1652,7 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -1652,15 +1676,15 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *         any custom workflows that this action triggers.
      *         </p>
      *         <p>
-     *         You create custom workflows by assigning AWS Lambda functions to
-     *         user pool triggers. When you use the AdminCreateUser API action,
+     *         You create custom workflows by assigning Lambda functions to user
+     *         pool triggers. When you use the AdminCreateUser API action,
      *         Amazon Cognito invokes the function that is assigned to the
      *         <i>pre sign-up</i> trigger. When Amazon Cognito invokes this
      *         function, it passes a JSON payload, which the function receives
      *         as input. This payload contains a <code>clientMetadata</code>
      *         attribute, which provides the data that you assigned to the
      *         ClientMetadata parameter in your AdminCreateUser request. In your
-     *         function code in AWS Lambda, you can process the
+     *         function code in Lambda, you can process the
      *         <code>clientMetadata</code> value to enhance your workflow for
      *         your specific needs.
      *         </p>
@@ -1679,10 +1703,10 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *         <li>
      *         <p>
      *         Amazon Cognito does not store the ClientMetadata value. This data
-     *         is available only to AWS Lambda triggers that are assigned to a
-     *         user pool to support custom workflows. If your user pool
-     *         configuration does not include triggers, the ClientMetadata
-     *         parameter serves no purpose.
+     *         is available only to Lambda triggers that are assigned to a user
+     *         pool to support custom workflows. If your user pool configuration
+     *         does not include triggers, the ClientMetadata parameter serves no
+     *         purpose.
      *         </p>
      *         </li>
      *         <li>
@@ -1709,14 +1733,14 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the AdminCreateUser API action, Amazon
-     * Cognito invokes the function that is assigned to the <i>pre sign-up</i>
-     * trigger. When Amazon Cognito invokes this function, it passes a JSON
-     * payload, which the function receives as input. This payload contains a
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the AdminCreateUser API action, Amazon Cognito
+     * invokes the function that is assigned to the <i>pre sign-up</i> trigger.
+     * When Amazon Cognito invokes this function, it passes a JSON payload,
+     * which the function receives as input. This payload contains a
      * <code>clientMetadata</code> attribute, which provides the data that you
      * assigned to the ClientMetadata parameter in your AdminCreateUser request.
-     * In your function code in AWS Lambda, you can process the
+     * In your function code in Lambda, you can process the
      * <code>clientMetadata</code> value to enhance your workflow for your
      * specific needs.
      * </p>
@@ -1735,7 +1759,7 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -1759,17 +1783,17 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            for any custom workflows that this action triggers.
      *            </p>
      *            <p>
-     *            You create custom workflows by assigning AWS Lambda functions
-     *            to user pool triggers. When you use the AdminCreateUser API
+     *            You create custom workflows by assigning Lambda functions to
+     *            user pool triggers. When you use the AdminCreateUser API
      *            action, Amazon Cognito invokes the function that is assigned
      *            to the <i>pre sign-up</i> trigger. When Amazon Cognito invokes
      *            this function, it passes a JSON payload, which the function
      *            receives as input. This payload contains a
      *            <code>clientMetadata</code> attribute, which provides the data
      *            that you assigned to the ClientMetadata parameter in your
-     *            AdminCreateUser request. In your function code in AWS Lambda,
-     *            you can process the <code>clientMetadata</code> value to
-     *            enhance your workflow for your specific needs.
+     *            AdminCreateUser request. In your function code in Lambda, you
+     *            can process the <code>clientMetadata</code> value to enhance
+     *            your workflow for your specific needs.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -1786,10 +1810,10 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            <li>
      *            <p>
      *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to AWS Lambda triggers that are
-     *            assigned to a user pool to support custom workflows. If your
-     *            user pool configuration does not include triggers, the
-     *            ClientMetadata parameter serves no purpose.
+     *            data is available only to Lambda triggers that are assigned to
+     *            a user pool to support custom workflows. If your user pool
+     *            configuration does not include triggers, the ClientMetadata
+     *            parameter serves no purpose.
      *            </p>
      *            </li>
      *            <li>
@@ -1816,14 +1840,14 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the AdminCreateUser API action, Amazon
-     * Cognito invokes the function that is assigned to the <i>pre sign-up</i>
-     * trigger. When Amazon Cognito invokes this function, it passes a JSON
-     * payload, which the function receives as input. This payload contains a
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the AdminCreateUser API action, Amazon Cognito
+     * invokes the function that is assigned to the <i>pre sign-up</i> trigger.
+     * When Amazon Cognito invokes this function, it passes a JSON payload,
+     * which the function receives as input. This payload contains a
      * <code>clientMetadata</code> attribute, which provides the data that you
      * assigned to the ClientMetadata parameter in your AdminCreateUser request.
-     * In your function code in AWS Lambda, you can process the
+     * In your function code in Lambda, you can process the
      * <code>clientMetadata</code> value to enhance your workflow for your
      * specific needs.
      * </p>
@@ -1842,7 +1866,7 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -1869,17 +1893,17 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            for any custom workflows that this action triggers.
      *            </p>
      *            <p>
-     *            You create custom workflows by assigning AWS Lambda functions
-     *            to user pool triggers. When you use the AdminCreateUser API
+     *            You create custom workflows by assigning Lambda functions to
+     *            user pool triggers. When you use the AdminCreateUser API
      *            action, Amazon Cognito invokes the function that is assigned
      *            to the <i>pre sign-up</i> trigger. When Amazon Cognito invokes
      *            this function, it passes a JSON payload, which the function
      *            receives as input. This payload contains a
      *            <code>clientMetadata</code> attribute, which provides the data
      *            that you assigned to the ClientMetadata parameter in your
-     *            AdminCreateUser request. In your function code in AWS Lambda,
-     *            you can process the <code>clientMetadata</code> value to
-     *            enhance your workflow for your specific needs.
+     *            AdminCreateUser request. In your function code in Lambda, you
+     *            can process the <code>clientMetadata</code> value to enhance
+     *            your workflow for your specific needs.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -1896,10 +1920,10 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            <li>
      *            <p>
      *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to AWS Lambda triggers that are
-     *            assigned to a user pool to support custom workflows. If your
-     *            user pool configuration does not include triggers, the
-     *            ClientMetadata parameter serves no purpose.
+     *            data is available only to Lambda triggers that are assigned to
+     *            a user pool to support custom workflows. If your user pool
+     *            configuration does not include triggers, the ClientMetadata
+     *            parameter serves no purpose.
      *            </p>
      *            </li>
      *            <li>
@@ -1929,14 +1953,14 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the AdminCreateUser API action, Amazon
-     * Cognito invokes the function that is assigned to the <i>pre sign-up</i>
-     * trigger. When Amazon Cognito invokes this function, it passes a JSON
-     * payload, which the function receives as input. This payload contains a
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the AdminCreateUser API action, Amazon Cognito
+     * invokes the function that is assigned to the <i>pre sign-up</i> trigger.
+     * When Amazon Cognito invokes this function, it passes a JSON payload,
+     * which the function receives as input. This payload contains a
      * <code>clientMetadata</code> attribute, which provides the data that you
      * assigned to the ClientMetadata parameter in your AdminCreateUser request.
-     * In your function code in AWS Lambda, you can process the
+     * In your function code in Lambda, you can process the
      * <code>clientMetadata</code> value to enhance your workflow for your
      * specific needs.
      * </p>
@@ -1955,7 +1979,7 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>

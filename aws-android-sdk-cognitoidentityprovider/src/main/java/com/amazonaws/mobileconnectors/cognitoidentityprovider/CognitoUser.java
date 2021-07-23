@@ -3163,8 +3163,9 @@ public class CognitoUser {
             nextTask = deviceSrpAuthentication(clientMetadata, challenge, callback, runInBackground);
         } else if (CognitoServiceConstants.CHLG_TYPE_NEW_PASSWORD_REQUIRED.equals(challengeName)) {
             final NewPasswordContinuation newPasswordContinuation = new NewPasswordContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge,
-                    runInBackground, callback);
+                    cognitoUser, context, usernameInternal, clientId,
+                    CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret),
+                    challenge, runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {
@@ -3328,7 +3329,7 @@ public class CognitoUser {
                 pool.getUserPoolId(), context);
         final AuthenticationHelper authenticationHelper = new AuthenticationHelper(deviceGroupKey);
         final RespondToAuthChallengeRequest devicesAuthRequest = initiateDevicesAuthRequest(
-                clientMetadata, authenticationHelper);
+                clientMetadata, challenge, authenticationHelper);
         try {
             final RespondToAuthChallengeResult initiateDeviceAuthResult = cognitoIdentityProviderClient
                     .respondToAuthChallenge(devicesAuthRequest);
@@ -3480,12 +3481,14 @@ public class CognitoUser {
      */
     private RespondToAuthChallengeRequest initiateDevicesAuthRequest(
             final Map<String, String> clientMetadata,
+            final RespondToAuthChallengeResult challenge,
             AuthenticationHelper authenticationHelper) {
         final RespondToAuthChallengeRequest initiateDevicesAuthRequest = new RespondToAuthChallengeRequest();
         initiateDevicesAuthRequest.setClientId(clientId);
         initiateDevicesAuthRequest
                 .setChallengeName(CognitoServiceConstants.CHLG_TYPE_DEVICE_SRP_AUTH);
         initiateDevicesAuthRequest.setClientMetadata(clientMetadata);
+        initiateDevicesAuthRequest.setSession(challenge.getSession());
         initiateDevicesAuthRequest.addChallengeResponsesEntry(
                 CognitoServiceConstants.CHLG_RESP_USERNAME, usernameInternal);
         initiateDevicesAuthRequest.addChallengeResponsesEntry(

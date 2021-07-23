@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,11 +20,11 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The request was rejected because the total packed size of the session
- * policies and session tags combined was too large. An AWS conversion
- * compresses the session policy document, session policy ARNs, and session tags
- * into a packed binary format that has a separate limit. The error message
- * indicates by percentage how close the policies and tags are to the upper size
- * limit. For more information, see <a href=
+ * policies and session tags combined was too large. An Amazon Web Services
+ * conversion compresses the session policy document, session policy ARNs, and
+ * session tags into a packed binary format that has a separate limit. The error
+ * message indicates by percentage how close the policies and tags are to the
+ * upper size limit. For more information, see <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html"
  * >Passing Session Tags in STS</a> in the <i>IAM User Guide</i>.
  * </p>

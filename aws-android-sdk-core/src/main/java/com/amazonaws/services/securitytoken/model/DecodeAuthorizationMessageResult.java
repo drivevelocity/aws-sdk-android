@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import java.io.Serializable;
  * <p>
  * A document that contains additional information about the authorization
  * status of a request from an encoded message that is returned in response to
- * an AWS request.
+ * an Amazon Web Services request.
  * </p>
  */
 public class DecodeAuthorizationMessageResult implements Serializable {

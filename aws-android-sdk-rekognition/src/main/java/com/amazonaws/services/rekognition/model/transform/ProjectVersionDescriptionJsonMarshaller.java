@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -89,6 +89,11 @@ class ProjectVersionDescriptionJsonMarshaller {
             GroundTruthManifest manifestSummary = projectVersionDescription.getManifestSummary();
             jsonWriter.name("ManifestSummary");
             GroundTruthManifestJsonMarshaller.getInstance().marshall(manifestSummary, jsonWriter);
+        }
+        if (projectVersionDescription.getKmsKeyId() != null) {
+            String kmsKeyId = projectVersionDescription.getKmsKeyId();
+            jsonWriter.name("KmsKeyId");
+            jsonWriter.value(kmsKeyId);
         }
         jsonWriter.endObject();
     }

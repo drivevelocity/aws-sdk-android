@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,17 +34,17 @@ import com.amazonaws.services.lambda.model.transform.*;
  * Client for accessing AWS Lambda. All service calls made using this client are
  * blocking, and will not return until the service call completes.
  * <p>
- * <fullname>AWS Lambda</fullname>
+ * <fullname>Lambda</fullname>
  * <p>
  * <b>Overview</b>
  * </p>
  * <p>
- * This is the <i>AWS Lambda API Reference</i>. The AWS Lambda Developer Guide
- * provides additional information. For the service overview, see <a
- * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS
+ * This is the <i>Lambda API Reference</i>. The Lambda Developer Guide provides
+ * additional information. For the service overview, see <a
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is
  * Lambda</a>, and for information about how the service works, see <a href=
- * "https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">AWS
- * Lambda: How it Works</a> in the <b>AWS Lambda Developer Guide</b>.
+ * "https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"
+ * >Lambda: How it Works</a> in the <b>Lambda Developer Guide</b>.
  * </p>
  */
 public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda {
@@ -334,6 +334,10 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
         jsonErrorUnmarshallers.add(new EC2AccessDeniedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new EC2ThrottledExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new EC2UnexpectedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EFSIOExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EFSMountConnectivityExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EFSMountFailureExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EFSMountTimeoutExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ENILimitReachedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestContentExceptionUnmarshaller());
@@ -429,8 +433,9 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * long connections with timeout or keep-alive settings.
      * </p>
      * <p>
-     * This operation requires permission for the
-     * <code>lambda:InvokeFunction</code> action.
+     * This operation requires permission for the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html"
+     * >lambda:InvokeFunction</a> action.
      * </p>
      * 
      * @param invokeRequest
@@ -446,6 +451,10 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * @throws EC2UnexpectedException
      * @throws SubnetIPAddressLimitReachedException
      * @throws ENILimitReachedException
+     * @throws EFSMountConnectivityException
+     * @throws EFSMountFailureException
+     * @throws EFSMountTimeoutException
+     * @throws EFSIOException
      * @throws EC2ThrottledException
      * @throws EC2AccessDeniedException
      * @throws InvalidSubnetIDException

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Updates the definition for a dimension. You cannot change the type of a
- * dimension after it is created (you can delete it and re-create it).
+ * dimension after it is created (you can delete it and recreate it).
  * </p>
  */
 public class UpdateDimensionRequest extends AmazonWebServiceRequest implements Serializable {

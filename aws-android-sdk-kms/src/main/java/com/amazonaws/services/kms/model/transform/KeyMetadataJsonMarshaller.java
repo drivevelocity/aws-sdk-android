@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.amazonaws.services.kms.model.transform;
 
 import com.amazonaws.services.kms.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -126,6 +127,23 @@ class KeyMetadataJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (keyMetadata.getMultiRegion() != null) {
+            Boolean multiRegion = keyMetadata.getMultiRegion();
+            jsonWriter.name("MultiRegion");
+            jsonWriter.value(multiRegion);
+        }
+        if (keyMetadata.getMultiRegionConfiguration() != null) {
+            MultiRegionConfiguration multiRegionConfiguration = keyMetadata
+                    .getMultiRegionConfiguration();
+            jsonWriter.name("MultiRegionConfiguration");
+            MultiRegionConfigurationJsonMarshaller.getInstance().marshall(multiRegionConfiguration,
+                    jsonWriter);
+        }
+        if (keyMetadata.getPendingDeletionWindowInDays() != null) {
+            Integer pendingDeletionWindowInDays = keyMetadata.getPendingDeletionWindowInDays();
+            jsonWriter.name("PendingDeletionWindowInDays");
+            jsonWriter.value(pendingDeletionWindowInDays);
         }
         jsonWriter.endObject();
     }

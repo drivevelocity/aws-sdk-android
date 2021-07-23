@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,8 +39,9 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
-     * >identity</a> to which the policy is attached.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html"
+     * >identity</a> to which the policy is attached. For example, a thing group
+     * or a certificate.
      * </p>
      */
     private String target;
@@ -105,14 +106,16 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
-     * >identity</a> to which the policy is attached.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html"
+     * >identity</a> to which the policy is attached. For example, a thing group
+     * or a certificate.
      * </p>
      *
      * @return <p>
      *         The <a href=
-     *         "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
-     *         >identity</a> to which the policy is attached.
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html"
+     *         >identity</a> to which the policy is attached. For example, a
+     *         thing group or a certificate.
      *         </p>
      */
     public String getTarget() {
@@ -122,14 +125,16 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
-     * >identity</a> to which the policy is attached.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html"
+     * >identity</a> to which the policy is attached. For example, a thing group
+     * or a certificate.
      * </p>
      *
      * @param target <p>
      *            The <a href=
-     *            "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
-     *            >identity</a> to which the policy is attached.
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html"
+     *            >identity</a> to which the policy is attached. For example, a
+     *            thing group or a certificate.
      *            </p>
      */
     public void setTarget(String target) {
@@ -139,8 +144,9 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
-     * >identity</a> to which the policy is attached.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html"
+     * >identity</a> to which the policy is attached. For example, a thing group
+     * or a certificate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -148,8 +154,9 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
      *
      * @param target <p>
      *            The <a href=
-     *            "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
-     *            >identity</a> to which the policy is attached.
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html"
+     *            >identity</a> to which the policy is attached. For example, a
+     *            thing group or a certificate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

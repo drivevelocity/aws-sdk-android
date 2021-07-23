@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import com.amazonaws.AmazonServiceException;
  * The request was denied due to request throttling. For more information about
  * throttling, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#requests-per-second"
- * >Limits</a> in the <i>AWS Key Management Service Developer Guide.</i>
+ * >Limits</a> in the <i>Key Management Service Developer Guide.</i>
  * </p>
  */
 public class KMSThrottlingException extends AmazonServiceException {

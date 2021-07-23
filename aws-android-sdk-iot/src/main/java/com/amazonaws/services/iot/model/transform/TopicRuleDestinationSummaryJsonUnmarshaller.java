@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,12 +42,23 @@ class TopicRuleDestinationSummaryJsonUnmarshaller implements
             } else if (name.equals("status")) {
                 topicRuleDestinationSummary.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("createdAt")) {
+                topicRuleDestinationSummary.setCreatedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("lastUpdatedAt")) {
+                topicRuleDestinationSummary.setLastUpdatedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("statusReason")) {
                 topicRuleDestinationSummary.setStatusReason(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("httpUrlSummary")) {
                 topicRuleDestinationSummary
                         .setHttpUrlSummary(HttpUrlDestinationSummaryJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("vpcDestinationSummary")) {
+                topicRuleDestinationSummary
+                        .setVpcDestinationSummary(VpcDestinationSummaryJsonUnmarshaller
+                                .getInstance()
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,11 +24,24 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides information about the queues for the specified Amazon Connect
  * instance.
  * </p>
+ * <p>
+ * If you do not specify a <code>QueueTypes</code> parameter, both standard and
+ * agent queues are returned. This might cause an unexpected truncation of
+ * results if you have more than 1000 agents and you limit the number of results
+ * of the API call in code.
+ * </p>
+ * <p>
+ * For more information about queues, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html"
+ * >Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
+ * </p>
  */
 public class ListQueuesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,7 +67,7 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,14 +77,16 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -80,14 +95,16 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -96,7 +113,8 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,7 +124,8 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -249,14 +268,14 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         The maximimum number of results to return per page.
+     *         The maximum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -265,14 +284,14 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -281,7 +300,7 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -291,7 +310,7 @@ public class ListQueuesRequest extends AmazonWebServiceRequest implements Serial
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

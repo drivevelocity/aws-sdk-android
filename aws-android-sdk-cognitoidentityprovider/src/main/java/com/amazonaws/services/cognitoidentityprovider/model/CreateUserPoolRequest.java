@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,30 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a new Amazon Cognito user pool and sets the password policy for the
  * pool.
  * </p>
+ * <note>
+ * <p>
+ * This action might generate an SMS text message. Starting June 1, 2021, U.S.
+ * telecom carriers require that you register an origination phone number before
+ * you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+ * in Amazon Cognito, you must register a phone number with <a
+ * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>.
+ * Cognito will use the the registered number automatically. Otherwise, Cognito
+ * users that must receive SMS messages might be unable to sign up, activate
+ * their accounts, or sign in.
+ * </p>
+ * <p>
+ * If you have never used SMS text messages with Amazon Cognito or any other
+ * Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+ * <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
+ * sandbox mode</a> </i>, you’ll have limitations, such as sending messages to
+ * only verified phone numbers. After testing in the sandbox environment, you
+ * can move out of the SMS sandbox and into production. For more information,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * > SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+ * Developer Guide</i>.
+ * </p>
+ * </note>
  */
 public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -63,7 +87,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the AWS CLI, see <a href=
+     * For adding permission using the CLI, see <a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -109,6 +133,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification message.
+     * EmailVerificationMessage is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -122,6 +149,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification subject.
+     * EmailVerificationSubject is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -359,7 +389,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the AWS CLI, see <a href=
+     * For adding permission using the CLI, see <a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -384,7 +414,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *         > AddPermission </a>.
      *         </p>
      *         <p>
-     *         For adding permission using the AWS CLI, see <a href=
+     *         For adding permission using the CLI, see <a href=
      *         "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      *         > add-permission </a>.
      *         </p>
@@ -413,7 +443,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the AWS CLI, see <a href=
+     * For adding permission using the CLI, see <a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -438,7 +468,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            > AddPermission </a>.
      *            </p>
      *            <p>
-     *            For adding permission using the AWS CLI, see <a href=
+     *            For adding permission using the CLI, see <a href=
      *            "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      *            > add-permission </a>.
      *            </p>
@@ -467,7 +497,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the AWS CLI, see <a href=
+     * For adding permission using the CLI, see <a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -495,7 +525,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            > AddPermission </a>.
      *            </p>
      *            <p>
-     *            For adding permission using the AWS CLI, see <a href=
+     *            For adding permission using the CLI, see <a href=
      *            "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      *            > add-permission </a>.
      *            </p>
@@ -821,6 +851,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification message.
+     * EmailVerificationMessage is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -831,6 +864,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *
      * @return <p>
      *         A string representing the email verification message.
+     *         EmailVerificationMessage is allowed only if <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *         >EmailSendingAccount</a> is DEVELOPER.
      *         </p>
      */
     public String getEmailVerificationMessage() {
@@ -840,6 +876,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification message.
+     * EmailVerificationMessage is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -850,6 +889,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *
      * @param emailVerificationMessage <p>
      *            A string representing the email verification message.
+     *            EmailVerificationMessage is allowed only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      */
     public void setEmailVerificationMessage(String emailVerificationMessage) {
@@ -859,6 +901,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification message.
+     * EmailVerificationMessage is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -872,6 +917,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *
      * @param emailVerificationMessage <p>
      *            A string representing the email verification message.
+     *            EmailVerificationMessage is allowed only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -884,6 +932,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification subject.
+     * EmailVerificationSubject is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -892,6 +943,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *
      * @return <p>
      *         A string representing the email verification subject.
+     *         EmailVerificationSubject is allowed only if <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *         >EmailSendingAccount</a> is DEVELOPER.
      *         </p>
      */
     public String getEmailVerificationSubject() {
@@ -901,6 +955,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification subject.
+     * EmailVerificationSubject is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -909,6 +966,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *
      * @param emailVerificationSubject <p>
      *            A string representing the email verification subject.
+     *            EmailVerificationSubject is allowed only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      */
     public void setEmailVerificationSubject(String emailVerificationSubject) {
@@ -918,6 +978,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * A string representing the email verification subject.
+     * EmailVerificationSubject is allowed only if <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -929,6 +992,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *
      * @param emailVerificationSubject <p>
      *            A string representing the email verification subject.
+     *            EmailVerificationSubject is allowed only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

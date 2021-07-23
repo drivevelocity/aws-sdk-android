@@ -33,13 +33,31 @@ public class InternalConfigTest {
     private void s3Assertions(InternalConfig config) {
         // S3
         SignerConfig signer = config.getSignerConfig("s3");
-        assertEquals("S3SignerType", signer.getSignerType());
+        assertEquals("AWSS3V4SignerType", signer.getSignerType());
         // S3 BJS
         signer = config.getSignerConfig("s3", "cn-north-1");
         assertEquals("AWSS3V4SignerType", signer.getSignerType());
         // S3 us-east-1
         signer = config.getSignerConfig("s3", Regions.US_EAST_1.name());
-        assertEquals("S3SignerType", signer.getSignerType());
+        assertEquals("AWSS3V4SignerType", signer.getSignerType());
+    }
+
+    @Test
+    public void lex() throws Exception {
+        InternalConfig config = new InternalConfig();
+        lexAssertions(config);
+    }
+
+    private void lexAssertions(InternalConfig config) {
+        // lex
+        SignerConfig signer = config.getSignerConfig("lex");
+        assertEquals("AmazonLexV4Signer", signer.getSignerType());
+        // lex EU
+        signer = config.getSignerConfig("lex", "eu-central-1");
+        assertEquals("AmazonLexV4Signer", signer.getSignerType());
+        // lex us-east-1
+        signer = config.getSignerConfig("lex", Regions.US_EAST_1.name());
+        assertEquals("AmazonLexV4Signer", signer.getSignerType());
     }
 
     @Test

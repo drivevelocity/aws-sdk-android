@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -89,8 +89,14 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             } else if (name.equals("stepFunctions")) {
                 action.setStepFunctions(StepFunctionsActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("timestream")) {
+                action.setTimestream(TimestreamActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("http")) {
                 action.setHttp(HttpActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("kafka")) {
+                action.setKafka(KafkaActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

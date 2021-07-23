@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -91,6 +91,13 @@ public class DescribeDomainConfigurationResult implements Serializable {
      * <b>Allowed Values: </b>ENDPOINT, AWS_MANAGED, CUSTOMER_MANAGED
      */
     private String domainType;
+
+    /**
+     * <p>
+     * The date and time the domain configuration's status was last changed.
+     * </p>
+     */
+    private java.util.Date lastStatusChangeDate;
 
     /**
      * <p>
@@ -688,6 +695,55 @@ public class DescribeDomainConfigurationResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The date and time the domain configuration's status was last changed.
+     * </p>
+     *
+     * @return <p>
+     *         The date and time the domain configuration's status was last
+     *         changed.
+     *         </p>
+     */
+    public java.util.Date getLastStatusChangeDate() {
+        return lastStatusChangeDate;
+    }
+
+    /**
+     * <p>
+     * The date and time the domain configuration's status was last changed.
+     * </p>
+     *
+     * @param lastStatusChangeDate <p>
+     *            The date and time the domain configuration's status was last
+     *            changed.
+     *            </p>
+     */
+    public void setLastStatusChangeDate(java.util.Date lastStatusChangeDate) {
+        this.lastStatusChangeDate = lastStatusChangeDate;
+    }
+
+    /**
+     * <p>
+     * The date and time the domain configuration's status was last changed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastStatusChangeDate <p>
+     *            The date and time the domain configuration's status was last
+     *            changed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeDomainConfigurationResult withLastStatusChangeDate(
+            java.util.Date lastStatusChangeDate) {
+        this.lastStatusChangeDate = lastStatusChangeDate;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -713,7 +769,9 @@ public class DescribeDomainConfigurationResult implements Serializable {
         if (getServiceType() != null)
             sb.append("serviceType: " + getServiceType() + ",");
         if (getDomainType() != null)
-            sb.append("domainType: " + getDomainType());
+            sb.append("domainType: " + getDomainType() + ",");
+        if (getLastStatusChangeDate() != null)
+            sb.append("lastStatusChangeDate: " + getLastStatusChangeDate());
         sb.append("}");
         return sb.toString();
     }
@@ -743,6 +801,8 @@ public class DescribeDomainConfigurationResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getServiceType() == null) ? 0 : getServiceType().hashCode());
         hashCode = prime * hashCode + ((getDomainType() == null) ? 0 : getDomainType().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastStatusChangeDate() == null) ? 0 : getLastStatusChangeDate().hashCode());
         return hashCode;
     }
 
@@ -797,6 +857,11 @@ public class DescribeDomainConfigurationResult implements Serializable {
             return false;
         if (other.getDomainType() != null
                 && other.getDomainType().equals(this.getDomainType()) == false)
+            return false;
+        if (other.getLastStatusChangeDate() == null ^ this.getLastStatusChangeDate() == null)
+            return false;
+        if (other.getLastStatusChangeDate() != null
+                && other.getLastStatusChangeDate().equals(this.getLastStatusChangeDate()) == false)
             return false;
         return true;
     }

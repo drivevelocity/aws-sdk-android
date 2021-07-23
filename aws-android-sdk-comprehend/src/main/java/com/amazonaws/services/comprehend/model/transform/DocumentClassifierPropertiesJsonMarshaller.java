@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -106,6 +106,11 @@ class DocumentClassifierPropertiesJsonMarshaller {
             String mode = documentClassifierProperties.getMode();
             jsonWriter.name("Mode");
             jsonWriter.value(mode);
+        }
+        if (documentClassifierProperties.getModelKmsKeyId() != null) {
+            String modelKmsKeyId = documentClassifierProperties.getModelKmsKeyId();
+            jsonWriter.name("ModelKmsKeyId");
+            jsonWriter.value(modelKmsKeyId);
         }
         jsonWriter.endObject();
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ public enum VoiceId {
     Enrique("Enrique"),
     Ewa("Ewa"),
     Filiz("Filiz"),
+    Gabrielle("Gabrielle"),
     Geraint("Geraint"),
     Giorgio("Giorgio"),
     Gwyneth("Gwyneth"),
@@ -53,6 +54,7 @@ public enum VoiceId {
     Justin("Justin"),
     Karl("Karl"),
     Kendra("Kendra"),
+    Kevin("Kevin"),
     Kimberly("Kimberly"),
     Lea("Lea"),
     Liv("Liv"),
@@ -70,6 +72,7 @@ public enum VoiceId {
     Mizuki("Mizuki"),
     Naja("Naja"),
     Nicole("Nicole"),
+    Olivia("Olivia"),
     Penelope("Penelope"),
     Raveena("Raveena"),
     Ricardo("Ricardo"),
@@ -115,6 +118,7 @@ public enum VoiceId {
         enumMap.put("Enrique", Enrique);
         enumMap.put("Ewa", Ewa);
         enumMap.put("Filiz", Filiz);
+        enumMap.put("Gabrielle", Gabrielle);
         enumMap.put("Geraint", Geraint);
         enumMap.put("Giorgio", Giorgio);
         enumMap.put("Gwyneth", Gwyneth);
@@ -128,6 +132,7 @@ public enum VoiceId {
         enumMap.put("Justin", Justin);
         enumMap.put("Karl", Karl);
         enumMap.put("Kendra", Kendra);
+        enumMap.put("Kevin", Kevin);
         enumMap.put("Kimberly", Kimberly);
         enumMap.put("Lea", Lea);
         enumMap.put("Liv", Liv);
@@ -145,6 +150,7 @@ public enum VoiceId {
         enumMap.put("Mizuki", Mizuki);
         enumMap.put("Naja", Naja);
         enumMap.put("Nicole", Nicole);
+        enumMap.put("Olivia", Olivia);
         enumMap.put("Penelope", Penelope);
         enumMap.put("Raveena", Raveena);
         enumMap.put("Ricardo", Ricardo);

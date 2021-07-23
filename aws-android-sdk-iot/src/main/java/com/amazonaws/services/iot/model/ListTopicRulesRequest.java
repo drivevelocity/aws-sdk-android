@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,7 +44,9 @@ public class ListTopicRulesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      */
     private String nextToken;
@@ -157,11 +159,15 @@ public class ListTopicRulesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      *
      * @return <p>
-     *         A token used to retrieve the next value.
+     *         To retrieve the next set of results, the <code>nextToken</code>
+     *         value from a previous response; otherwise <b>null</b> to receive
+     *         the first set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -170,11 +176,15 @@ public class ListTopicRulesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      *
      * @param nextToken <p>
-     *            A token used to retrieve the next value.
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -183,14 +193,18 @@ public class ListTopicRulesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            A token used to retrieve the next value.
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

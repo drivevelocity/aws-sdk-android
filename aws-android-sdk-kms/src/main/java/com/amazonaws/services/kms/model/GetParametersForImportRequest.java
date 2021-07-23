@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,9 +51,33 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The CMK that you use for this operation must be in a compatible key state.
  * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
- * Management Service Developer Guide</i>.
+ * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
+ * different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:GetParametersForImport</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>ImportKeyMaterial</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteImportedKeyMaterial</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class GetParametersForImportRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -63,7 +87,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -124,7 +148,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -156,7 +180,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *         <code>EXTERNAL</code>.
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         Specify the key ID or key ARN of the CMK.
      *         </p>
      *         <p>
      *         For example:
@@ -190,7 +214,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -222,8 +246,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:
@@ -257,7 +280,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -292,8 +315,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.comprehend.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
 import com.amazonaws.util.json.AwsJsonWriter;
@@ -122,6 +123,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 String mode = createDocumentClassifierRequest.getMode();
                 jsonWriter.name("Mode");
                 jsonWriter.value(mode);
+            }
+            if (createDocumentClassifierRequest.getModelKmsKeyId() != null) {
+                String modelKmsKeyId = createDocumentClassifierRequest.getModelKmsKeyId();
+                jsonWriter.name("ModelKmsKeyId");
+                jsonWriter.value(modelKmsKeyId);
             }
 
             jsonWriter.endObject();

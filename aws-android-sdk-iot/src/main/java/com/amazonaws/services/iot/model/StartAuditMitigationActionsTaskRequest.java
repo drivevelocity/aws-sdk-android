@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
      * <p>
      * Specifies the audit findings to which the mitigation actions are applied.
      * You can apply them to a type of audit check, to all findings from an
-     * audit, or to a speecific set of findings.
+     * audit, or to a specific set of findings.
      * </p>
      */
     private AuditMitigationActionsTaskTarget target;
@@ -137,13 +137,13 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
      * <p>
      * Specifies the audit findings to which the mitigation actions are applied.
      * You can apply them to a type of audit check, to all findings from an
-     * audit, or to a speecific set of findings.
+     * audit, or to a specific set of findings.
      * </p>
      *
      * @return <p>
      *         Specifies the audit findings to which the mitigation actions are
      *         applied. You can apply them to a type of audit check, to all
-     *         findings from an audit, or to a speecific set of findings.
+     *         findings from an audit, or to a specific set of findings.
      *         </p>
      */
     public AuditMitigationActionsTaskTarget getTarget() {
@@ -154,13 +154,13 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
      * <p>
      * Specifies the audit findings to which the mitigation actions are applied.
      * You can apply them to a type of audit check, to all findings from an
-     * audit, or to a speecific set of findings.
+     * audit, or to a specific set of findings.
      * </p>
      *
      * @param target <p>
      *            Specifies the audit findings to which the mitigation actions
      *            are applied. You can apply them to a type of audit check, to
-     *            all findings from an audit, or to a speecific set of findings.
+     *            all findings from an audit, or to a specific set of findings.
      *            </p>
      */
     public void setTarget(AuditMitigationActionsTaskTarget target) {
@@ -171,7 +171,7 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
      * <p>
      * Specifies the audit findings to which the mitigation actions are applied.
      * You can apply them to a type of audit check, to all findings from an
-     * audit, or to a speecific set of findings.
+     * audit, or to a specific set of findings.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -180,7 +180,7 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
      * @param target <p>
      *            Specifies the audit findings to which the mitigation actions
      *            are applied. You can apply them to a type of audit check, to
-     *            all findings from an audit, or to a speecific set of findings.
+     *            all findings from an audit, or to a specific set of findings.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

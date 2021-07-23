@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -50,6 +51,13 @@ class ActiveViolationJsonMarshaller {
             MetricValue lastViolationValue = activeViolation.getLastViolationValue();
             jsonWriter.name("lastViolationValue");
             MetricValueJsonMarshaller.getInstance().marshall(lastViolationValue, jsonWriter);
+        }
+        if (activeViolation.getViolationEventAdditionalInfo() != null) {
+            ViolationEventAdditionalInfo violationEventAdditionalInfo = activeViolation
+                    .getViolationEventAdditionalInfo();
+            jsonWriter.name("violationEventAdditionalInfo");
+            ViolationEventAdditionalInfoJsonMarshaller.getInstance().marshall(
+                    violationEventAdditionalInfo, jsonWriter);
         }
         if (activeViolation.getLastViolationTime() != null) {
             java.util.Date lastViolationTime = activeViolation.getLastViolationTime();

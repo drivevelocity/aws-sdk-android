@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,6 +52,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * the input face. In the response, the operation also returns the bounding box
  * (and a confidence level that the bounding box contains a face) of the face
  * that Amazon Rekognition used for the input image.
+ * </p>
+ * <p>
+ * If no faces are detected in the input image, <code>SearchFacesByImage</code>
+ * returns an <code>InvalidParameterException</code> error.
  * </p>
  * <p>
  * For an example, Searching for a Face Using an Image in the Amazon Rekognition

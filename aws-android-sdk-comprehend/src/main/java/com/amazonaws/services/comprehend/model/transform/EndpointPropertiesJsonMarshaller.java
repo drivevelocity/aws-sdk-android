@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,6 +66,11 @@ class EndpointPropertiesJsonMarshaller {
             java.util.Date lastModifiedTime = endpointProperties.getLastModifiedTime();
             jsonWriter.name("LastModifiedTime");
             jsonWriter.value(lastModifiedTime);
+        }
+        if (endpointProperties.getDataAccessRoleArn() != null) {
+            String dataAccessRoleArn = endpointProperties.getDataAccessRoleArn();
+            jsonWriter.name("DataAccessRoleArn");
+            jsonWriter.value(dataAccessRoleArn);
         }
         jsonWriter.endObject();
     }

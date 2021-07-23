@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,13 +21,56 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a list of all grants for which the grant's
- * <code>RetiringPrincipal</code> matches the one specified.
+ * Returns information about all grants in the AWS account and Region that have
+ * the specified retiring principal. For more information about grants, see <a
+ * href
+ * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Grants
+ * </a> in the <i> <i>AWS Key Management Service Developer Guide</i> </i>.
  * </p>
  * <p>
- * A typical use is to list all grants that you are able to retire. To retire a
- * grant, use <a>RetireGrant</a>.
+ * You can specify any principal in your AWS account. The grants that are
+ * returned include grants for CMKs in your AWS account and other AWS accounts.
  * </p>
+ * <p>
+ * You might use this operation to determine which grants you may retire. To
+ * retire a grant, use the <a>RetireGrant</a> operation.
+ * </p>
+ * <p>
+ * <b>Cross-account use</b>: You must specify a principal in your AWS account.
+ * However, this operation can return grants in any AWS account. You do not need
+ * <code>kms:ListRetirableGrants</code> permission (or any other additional
+ * permission) in any AWS account other than your own.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:ListRetirableGrants</a> (IAM policy) in your AWS account.
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateGrant</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListGrants</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RetireGrant</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RevokeGrant</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -61,7 +104,8 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retiring principal for which to list grants.
+     * The retiring principal for which to list grants. Enter a principal in
+     * your AWS account.
      * </p>
      * <p>
      * To specify the retiring principal, use the <a href=
@@ -250,7 +294,8 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retiring principal for which to list grants.
+     * The retiring principal for which to list grants. Enter a principal in
+     * your AWS account.
      * </p>
      * <p>
      * To specify the retiring principal, use the <a href=
@@ -269,7 +314,8 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
-     *         The retiring principal for which to list grants.
+     *         The retiring principal for which to list grants. Enter a
+     *         principal in your AWS account.
      *         </p>
      *         <p>
      *         To specify the retiring principal, use the <a href=
@@ -289,7 +335,8 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retiring principal for which to list grants.
+     * The retiring principal for which to list grants. Enter a principal in
+     * your AWS account.
      * </p>
      * <p>
      * To specify the retiring principal, use the <a href=
@@ -308,7 +355,8 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
-     *            The retiring principal for which to list grants.
+     *            The retiring principal for which to list grants. Enter a
+     *            principal in your AWS account.
      *            </p>
      *            <p>
      *            To specify the retiring principal, use the <a href=
@@ -329,7 +377,8 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retiring principal for which to list grants.
+     * The retiring principal for which to list grants. Enter a principal in
+     * your AWS account.
      * </p>
      * <p>
      * To specify the retiring principal, use the <a href=
@@ -351,7 +400,8 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
-     *            The retiring principal for which to list grants.
+     *            The retiring principal for which to list grants. Enter a
+     *            principal in your AWS account.
      *            </p>
      *            <p>
      *            To specify the retiring principal, use the <a href=

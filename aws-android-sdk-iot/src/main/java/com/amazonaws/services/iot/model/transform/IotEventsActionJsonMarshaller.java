@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -35,6 +36,11 @@ class IotEventsActionJsonMarshaller {
             String messageId = iotEventsAction.getMessageId();
             jsonWriter.name("messageId");
             jsonWriter.value(messageId);
+        }
+        if (iotEventsAction.getBatchMode() != null) {
+            Boolean batchMode = iotEventsAction.getBatchMode();
+            jsonWriter.name("batchMode");
+            jsonWriter.value(batchMode);
         }
         if (iotEventsAction.getRoleArn() != null) {
             String roleArn = iotEventsAction.getRoleArn();

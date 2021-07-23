@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The filter used to determine which endpoints are are returned. You can filter
+ * The filter used to determine which endpoints are returned. You can filter
  * jobs on their name, model, status, or the date and time that they were
  * created. You can only set one filter at a time.
  * </p>

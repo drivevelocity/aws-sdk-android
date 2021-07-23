@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,8 +42,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To generate a data key pair, you must specify a symmetric customer master key
  * (CMK) to encrypt the private key in a data key pair. You cannot use an
- * asymmetric CMK. To get the type of your CMK, use the <a>DescribeKey</a>
- * operation.
+ * asymmetric CMK or a CMK in a custom key store. To get the type and origin of
+ * your CMK, use the <a>DescribeKey</a> operation.
  * </p>
  * <p>
  * If you are using the data key pair to encrypt data, or for any operation
@@ -60,7 +60,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * encryption operation. If you specify an <code>EncryptionContext</code>, you
  * must specify the same encryption context (a case-sensitive exact match) when
  * decrypting the encrypted data key. Otherwise, the request to decrypt fails
- * with an InvalidCiphertextException. For more information, see <a href=
+ * with an <code>InvalidCiphertextException</code>. For more information, see <a
+ * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
  * >Encryption Context</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
@@ -69,9 +70,49 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The CMK that you use for this operation must be in a compatible key state.
  * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
- * Management Service Developer Guide</i>.
+ * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
+ * different AWS account, specify the key ARN or alias ARN in the value of the
+ * <code>KeyId</code> parameter.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:GenerateDataKeyPair</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>Decrypt</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>Encrypt</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKey</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyPairWithoutPlaintext</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyWithoutPlaintext</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -99,13 +140,14 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -167,9 +209,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -369,13 +413,14 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -415,12 +460,14 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *
      * @return <p>
      *         Specifies the symmetric CMK that encrypts the private key in the
-     *         data key pair. You cannot specify an asymmetric CMKs.
+     *         data key pair. You cannot specify an asymmetric CMK or a CMK in a
+     *         custom key store. To get the type and origin of your CMK, use the
+     *         <a>DescribeKey</a> operation.
      *         </p>
      *         <p>
-     *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
+     *         To specify a CMK, use its key ID, key ARN, alias name, or alias
+     *         ARN. When using an alias name, prefix it with
+     *         <code>"alias/"</code>. To specify a CMK in a different AWS
      *         account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
@@ -463,13 +510,14 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -509,13 +557,15 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *
      * @param keyId <p>
      *            Specifies the symmetric CMK that encrypts the private key in
-     *            the data key pair. You cannot specify an asymmetric CMKs.
+     *            the data key pair. You cannot specify an asymmetric CMK or a
+     *            CMK in a custom key store. To get the type and origin of your
+     *            CMK, use the <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            alias ARN. When using an alias name, prefix it with
+     *            <code>"alias/"</code>. To specify a CMK in a different AWS
+     *            account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -557,13 +607,14 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -606,13 +657,15 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *
      * @param keyId <p>
      *            Specifies the symmetric CMK that encrypts the private key in
-     *            the data key pair. You cannot specify an asymmetric CMKs.
+     *            the data key pair. You cannot specify an asymmetric CMK or a
+     *            CMK in a custom key store. To get the type and origin of your
+     *            CMK, use the <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            alias ARN. When using an alias name, prefix it with
+     *            <code>"alias/"</code>. To specify a CMK in a different AWS
+     *            account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -821,9 +874,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -831,9 +886,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *         A list of grant tokens.
      *         </p>
      *         <p>
-     *         For more information, see <a href=
+     *         Use a grant token when your permission to call this operation
+     *         comes from a new grant that has not yet achieved <i>eventual
+     *         consistency</i>. For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     *         >Grant token</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
      */
@@ -846,9 +903,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -856,9 +915,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -876,9 +937,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -889,9 +952,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -912,9 +977,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -925,9 +992,11 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

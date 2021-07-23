@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Contains the response to a successful <a>GetSessionToken</a> request,
- * including temporary AWS credentials that can be used to make AWS requests.
+ * including temporary Amazon Web Services credentials that can be used to make
+ * Amazon Web Services requests.
  * </p>
  */
 public class GetSessionTokenResult implements Serializable {

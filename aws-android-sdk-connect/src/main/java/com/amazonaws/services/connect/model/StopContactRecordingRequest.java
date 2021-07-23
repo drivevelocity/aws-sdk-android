@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,13 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * When a contact is being recorded, this API stops recording the call.
- * StopContactRecording is a one-time action. If you use StopContactRecording to
- * stop recording an ongoing call, you can't use StartContactRecording to
- * restart it. For scenarios where the recording has started and you want to
- * suspend it for sensitive information (for example, to collect a credit card
- * number), and then restart it, use SuspendContactRecording and
- * ResumeContactRecording.
+ * Stops recording a call when a contact is being recorded. StopContactRecording
+ * is a one-time action. If you use StopContactRecording to stop recording an
+ * ongoing call, you can't use StartContactRecording to restart it. For
+ * scenarios where the recording has started and you want to suspend it for
+ * sensitive information (for example, to collect a credit card number), and
+ * then restart it, use SuspendContactRecording and ResumeContactRecording.
  * </p>
  * <p>
  * Only voice recordings are supported at this time.
@@ -36,7 +35,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class StopContactRecordingRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,14 +67,16 @@ public class StopContactRecordingRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -83,14 +85,16 @@ public class StopContactRecordingRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -99,7 +103,8 @@ public class StopContactRecordingRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -109,7 +114,8 @@ public class StopContactRecordingRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

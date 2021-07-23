@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,11 @@ import java.io.Serializable;
 /**
  * <p>
  * Contains summary information about a contact flow.
+ * </p>
+ * <p>
+ * You can also create and update contact flows using the <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+ * >Amazon Connect Flow language</a>.
  * </p>
  */
 public class ContactFlowSummary implements Serializable {
@@ -44,6 +49,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * The name of the contact flow.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      */
     private String name;
 
@@ -162,6 +170,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * The name of the contact flow.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @return <p>
      *         The name of the contact flow.
@@ -175,6 +186,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * The name of the contact flow.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
      *            The name of the contact flow.
@@ -191,6 +205,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
      *            The name of the contact flow.

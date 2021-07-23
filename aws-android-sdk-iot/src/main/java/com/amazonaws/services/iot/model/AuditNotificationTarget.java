@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * The ARN of the target (SNS topic) to which audit notifications are sent.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      */
     private String targetArn;
 
@@ -52,6 +55,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * The ARN of the target (SNS topic) to which audit notifications are sent.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @return <p>
      *         The ARN of the target (SNS topic) to which audit notifications
@@ -66,6 +72,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * The ARN of the target (SNS topic) to which audit notifications are sent.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param targetArn <p>
      *            The ARN of the target (SNS topic) to which audit notifications
@@ -83,6 +92,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param targetArn <p>
      *            The ARN of the target (SNS topic) to which audit notifications

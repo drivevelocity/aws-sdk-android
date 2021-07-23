@@ -29,6 +29,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import androidx.annotation.AnyThread;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.browser.customtabs.CustomTabsCallback;
 import androidx.browser.customtabs.CustomTabsClient;
@@ -126,11 +127,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import static com.amazonaws.mobile.client.results.SignInState.CUSTOM_CHALLENGE;
+import static com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants.AUTH_TYPE_INIT_CUSTOM_AUTH;
+import static com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants.AUTH_TYPE_INIT_USER_PASSWORD;
+import static com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD;
 
 /**
  * The AWSMobileClient provides client APIs and building blocks for developers who want to create
@@ -191,6 +193,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private static final String FACEBOOK = "FacebookSignIn";
     private static final String GOOGLE = "GoogleSignIn";
     private static final String GOOGLE_WEBAPP_CONFIG_KEY = "ClientId-WebApp";
+
+    /**
+     * Configuration key for Cognito User Pool Custom Endpoint
+     */
+    private static final String COGNITO_USERPOOL_CUSTOM_ENDPOINT = "Endpoint";
+
     /**
      * Singleton instance for AWSMobileClient.
      */
@@ -261,7 +269,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private volatile CountDownLatch showSignInWaitLatch;
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
-    AWSMobileClientStore mStore;
+    KeyValueStore mStore;
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
     AmazonCognitoIdentityProvider userpoolLL;
@@ -327,6 +335,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         federateWithCognitoIdentityLockObject = new Object();
         showSignInWaitLatch = new CountDownLatch(1);
         initLockObject = new Object();
+        mStore = new DummyStore();
     }
 
     /**
@@ -339,6 +348,25 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             singleton = new AWSMobileClient();
         }
         return singleton;
+    }
+
+    /**
+     * For unit testing purposes only so we can force a new instance of
+     * mobile client to be created.
+     * @param forceGetNew True if a new instance of AWSMobileClient should be created.
+     * @return A new instance of AWSMobileClient.
+     */
+    @VisibleForTesting
+    static synchronized AWSMobileClient getInstance(boolean forceGetNew) {
+        if (forceGetNew) {
+            singleton = null;
+        }
+        return new AWSMobileClient();
+    }
+
+    @VisibleForTesting
+    void setUserPool(CognitoUserPool userpool) {
+        this.userpool = userpool;
     }
 
     /**
@@ -488,6 +516,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     identityManager.setConfiguration(awsConfiguration);
                     identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                     IdentityManager.setDefaultIdentityManager(identityManager);
+                    registerConfigSignInProviders(awsConfiguration);
                     identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
                         @Override
                         public void onUserSignedIn() {
@@ -557,6 +586,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             final String clientId = userPoolJSON.getString("AppClientId");
                             final String clientSecret = userPoolJSON.optString("AppClientSecret");
                             final String pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolJSON.optString("PinpointAppId"));
+                            final String cognitoUserPoolCustomEndpoint = userPoolJSON.optString(COGNITO_USERPOOL_CUSTOM_ENDPOINT);
 
                             final ClientConfiguration clientConfig = new ClientConfiguration();
                             clientConfig.setUserAgent(DEFAULT_USER_AGENT + " " + awsConfiguration.getUserAgent());
@@ -569,7 +599,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
 
-                            userpool = new CognitoUserPool(mContext, mUserPoolPoolId, clientId, clientSecret, userpoolLL, pinpointEndpointId);
+                            userpool = new CognitoUserPool(mContext, mUserPoolPoolId, clientId, clientSecret, userpoolLL, pinpointEndpointId, cognitoUserPoolCustomEndpoint);
                             userpool.setPersistenceEnabled(mIsPersistenceEnabled);
 
                             mDeviceOperations = new DeviceOperations(AWSMobileClient.this, userpoolLL);
@@ -795,8 +825,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     /**
-     * Returns the signed-in user's username obtained from the access token.
-     * @return signed-in user's username
+     * Returns the username attribute of the current access token. Note that the value stored in the username
+     * attribute of the access token may vary depending on how sign-in was performed. For example, if the user signed in
+     * with email, the username attribute will have the email address.
+     * @return The username attribute of the current access token.
+     * @see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html#amazon-cognito-user-pools-using-the-access-token">Using the Access Token</a>
+     * from Cognito documentation.
      */
     @AnyThread
     public String getUsername() {
@@ -1202,23 +1236,40 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             @Override
                             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                                 Log.d(TAG, "Sending password.");
+                                final HashMap<String, String> authParameters = new HashMap<>();
+                                // Check if the auth flow type setting is in the configuration.
+                                boolean authFlowTypeInConfig =
+                                    awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType");
+
                                 try {
-                                    if (
-                                            awsConfiguration.optJsonObject(AUTH_KEY) != null &&
-                                            awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
-                                            awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
-                                    ) {
-                                        final HashMap<String, String> authParameters = new HashMap<String, String>();
+                                    String authFlowType = authFlowTypeInConfig ?
+                                        awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType") :
+                                        null;
+                                    if (authFlowTypeInConfig && AUTH_TYPE_INIT_CUSTOM_AUTH.equals(authFlowType)) {
+                                        // If there's a value in the config and it's CUSTOM_AUTH, we'll
+                                        // use one of the below constructors depending on what's passed in.
                                         if (password != null) {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
                                         } else {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
                                         }
+                                    } else if (authFlowTypeInConfig && AUTH_TYPE_INIT_USER_PASSWORD.equals(authFlowType)) {
+                                        // If there's a value in the config and it's USER_PASSWORD_AUTH, set the auth type (challenge name)
+                                        // to be USER_PASSWORD.
+                                        AuthenticationDetails authenticationDetails = new AuthenticationDetails(username, password, validationData);
+                                        authenticationDetails.setAuthenticationType(CHLG_TYPE_USER_PASSWORD);
+                                        authenticationContinuation.setAuthenticationDetails(authenticationDetails);
+
                                     } else {
+                                        // Otherwise, auth flow is USER_SRP_AUTH and the auth type (challenge name)
+                                        // will default to PASSWORD_VERIFIER.
+                                        Log.d(TAG, "Using USER_SRP_AUTH for flow type.");
                                         authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+
+                                } catch (JSONException exception) {
+                                    Log.w(TAG, "Exception while attempting to read authenticationFlowType from config.", exception);
                                 }
 
                                 authenticationContinuation.continueTask();
@@ -1280,7 +1331,17 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                               final Callback<SignInResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_confirmSignIn(signInChallengeResponse, clientMetadata, internalCallback));
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, clientMetadata, Collections.<String, String>emptyMap(), internalCallback));
+    }
+
+    @AnyThread
+    public void confirmSignIn(final String signInChallengeResponse,
+                              final Map<String, String> clientMetadata,
+                              final Map<String, String> userAttributes,
+                              final Callback<SignInResult> callback) {
+
+        final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, clientMetadata, userAttributes, internalCallback));
     }
 
     @WorkerThread
@@ -1293,11 +1354,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                       final Map<String, String> clientMetadata) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_confirmSignIn(signInChallengeResponse, clientMetadata, internalCallback));
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, clientMetadata, Collections.<String, String>emptyMap(), internalCallback));
+    }
+
+    @WorkerThread
+    public SignInResult confirmSignIn(final String signInChallengeResponse,
+                                      final Map<String, String> clientMetadata,
+                                      final Map<String, String> userAttributes) throws Exception {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, clientMetadata, userAttributes, internalCallback));
     }
 
     private Runnable _confirmSignIn(final String signInChallengeResponse,
                                     final Map<String, String> clientMetadata,
+                                    final Map<String, String> userAttributes,
                                     final Callback<SignInResult> callback) {
 
         return new Runnable() {
@@ -1322,8 +1393,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         ((NewPasswordContinuation) signInChallengeContinuation)
                                 .setPassword(signInChallengeResponse);
                         signInChallengeContinuation.setClientMetaData(clientMetadata);
+                        for (final String key : userAttributes.keySet()) {
+                            signInChallengeContinuation.setChallengeResponse(CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY + key, userAttributes.get(key));
+                        }
                         detectedContinuation = signInChallengeContinuation;
                         signInCallback = new InternalCallback<SignInResult>(callback);
+                        break;
+                    case CUSTOM_CHALLENGE:
+                        signInChallengeContinuation.setChallengeResponse("ANSWER", signInChallengeResponse);
+                        detectedContinuation = signInChallengeContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        if (clientMetadata != null) {
+                            signInChallengeContinuation.setClientMetaData(clientMetadata);
+                        }
                         break;
                     case DONE:
                         callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
@@ -3341,8 +3423,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
 
-                    registerConfigSignInProviders();
-
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
                             .canCancel(signInUIOptions.canCancel())
                             .isBackgroundColorFullScreen(false);
@@ -3481,7 +3561,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             final IdentityManager identityManager = new IdentityManager(context, this.awsConfiguration);
             IdentityManager.setDefaultIdentityManager(identityManager);
             if (this.signInProviderConfig == null) {
-                this.registerConfigSignInProviders();
+                this.registerConfigSignInProviders(this.awsConfiguration);
             } else {
                 this.registerUserSignInProvidersWithPermissions();
             }
@@ -3517,23 +3597,26 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Register the SignInProvider and permissions based on the
      * AWSConfiguration.
      */
-    private void registerConfigSignInProviders() {
+    private void registerConfigSignInProviders(final AWSConfiguration awsConfiguration) {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS, this.awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(CognitoUserPoolsSignInProvider.class)) {
-            identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
-        }
+        try {
+            if (isConfigurationKeyPresent(USER_POOLS, awsConfiguration)) {
+                identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(FACEBOOK, this.awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(FacebookSignInProvider.class)) {
-            identityManager.addSignInProvider(FacebookSignInProvider.class);
-        }
+            if (isConfigurationKeyPresent(FACEBOOK, awsConfiguration)) {
+                identityManager.addSignInProvider(FacebookSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(GOOGLE, this.awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(GoogleSignInProvider.class)) {
-            identityManager.addSignInProvider(GoogleSignInProvider.class);
+            if (isConfigurationKeyPresent(GOOGLE, awsConfiguration)) {
+                identityManager.addSignInProvider(GoogleSignInProvider.class);
+            }
+        } catch (NoClassDefFoundError exception) {
+            // The above sign in providers are optional dependencies that are required for
+            // drop-in UI to work correctly. Not registering them will still allow users to
+            // sign in via other methods.
         }
     }
 
@@ -3774,64 +3857,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         public String[] getProviderPermissions() {
             return this.providerPermissions;
         }
-    }
-}
-
-class AWSMobileClientStore {
-    AWSKeyValueStore mAWSKeyValueStore;
-
-    private ReadWriteLock mReadWriteLock = new ReentrantReadWriteLock();
-
-    AWSMobileClientStore(AWSMobileClient client) {
-        mAWSKeyValueStore = new AWSKeyValueStore(client.mContext,
-                AWSMobileClient.SHARED_PREFERENCES_KEY,
-                client.mIsPersistenceEnabled);
-    }
-
-    Map<String, String> get(final String... keys) {
-        try {
-            mReadWriteLock.readLock().lock();
-            HashMap<String, String> attributes = new HashMap<String, String>();
-            for (String key : keys) {
-                attributes.put(key, mAWSKeyValueStore.get(key));
-            }
-            return attributes;
-        } finally {
-            mReadWriteLock.readLock().unlock();
-        }
-    }
-
-    String get(final String key) {
-        try {
-            mReadWriteLock.readLock().lock();
-            return mAWSKeyValueStore.get(key);
-        } finally {
-            mReadWriteLock.readLock().unlock();
-        }
-    }
-
-    void set(final Map<String, String> attributes) {
-        try {
-            mReadWriteLock.writeLock().lock();
-            for (String key : attributes.keySet()) {
-                mAWSKeyValueStore.put(key, attributes.get(key));
-            }
-        } finally {
-            mReadWriteLock.writeLock().unlock();
-        }
-    }
-
-    void set(final String key, final String value) {
-        try {
-            mReadWriteLock.writeLock().lock();
-            mAWSKeyValueStore.put(key, value);
-        } finally {
-            mReadWriteLock.writeLock().unlock();
-        }
-    }
-
-    void clear() {
-        mAWSKeyValueStore.clear();
     }
 }
 

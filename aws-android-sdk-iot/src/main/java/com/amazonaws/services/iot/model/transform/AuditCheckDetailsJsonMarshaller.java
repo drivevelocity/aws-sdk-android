@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -45,6 +46,12 @@ class AuditCheckDetailsJsonMarshaller {
             Long nonCompliantResourcesCount = auditCheckDetails.getNonCompliantResourcesCount();
             jsonWriter.name("nonCompliantResourcesCount");
             jsonWriter.value(nonCompliantResourcesCount);
+        }
+        if (auditCheckDetails.getSuppressedNonCompliantResourcesCount() != null) {
+            Long suppressedNonCompliantResourcesCount = auditCheckDetails
+                    .getSuppressedNonCompliantResourcesCount();
+            jsonWriter.name("suppressedNonCompliantResourcesCount");
+            jsonWriter.value(suppressedNonCompliantResourcesCount);
         }
         if (auditCheckDetails.getErrorCode() != null) {
             String errorCode = auditCheckDetails.getErrorCode();

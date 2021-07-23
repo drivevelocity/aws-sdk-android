@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,6 +38,11 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * The name of the thing to create.
+     * </p>
+     * <p>
+     * You can't change a thing's name after you create it. To change a thing's
+     * name, you must create a new thing, give it the new name, and then delete
+     * the old thing.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,12 +89,22 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * The name of the thing to create.
      * </p>
      * <p>
+     * You can't change a thing's name after you create it. To change a thing's
+     * name, you must create a new thing, give it the new name, and then delete
+     * the old thing.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
      *         The name of the thing to create.
+     *         </p>
+     *         <p>
+     *         You can't change a thing's name after you create it. To change a
+     *         thing's name, you must create a new thing, give it the new name,
+     *         and then delete the old thing.
      *         </p>
      */
     public String getThingName() {
@@ -101,12 +116,22 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * The name of the thing to create.
      * </p>
      * <p>
+     * You can't change a thing's name after you create it. To change a thing's
+     * name, you must create a new thing, give it the new name, and then delete
+     * the old thing.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing to create.
+     *            </p>
+     *            <p>
+     *            You can't change a thing's name after you create it. To change
+     *            a thing's name, you must create a new thing, give it the new
+     *            name, and then delete the old thing.
      *            </p>
      */
     public void setThingName(String thingName) {
@@ -118,6 +143,11 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * The name of the thing to create.
      * </p>
      * <p>
+     * You can't change a thing's name after you create it. To change a thing's
+     * name, you must create a new thing, give it the new name, and then delete
+     * the old thing.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -127,6 +157,11 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param thingName <p>
      *            The name of the thing to create.
+     *            </p>
+     *            <p>
+     *            You can't change a thing's name after you create it. To change
+     *            a thing's name, you must create a new thing, give it the new
+     *            name, and then delete the old thing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

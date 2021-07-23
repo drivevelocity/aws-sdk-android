@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,9 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Use Sig V4 authorization.
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+ * >Signature Version 4 signing process</a>.
  * </p>
  */
 public class SigV4Authorization implements Serializable {

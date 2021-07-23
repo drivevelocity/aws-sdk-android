@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,11 +27,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * retrieves all things in the registry that contain an attribute <b>Color</b>
  * with the value <b>Red</b>.
  * </p>
+ * <note>
+ * <p>
+ * You will not be charged for calling this API if an <code>Access denied</code>
+ * error is returned. You will also not be charged if no attributes or
+ * pagination token was provided in request and no pagination token and no
+ * results were returned.
+ * </p>
+ * </note>
  */
 public class ListThingsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The token to retrieve the next set of results.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      */
     private String nextToken;
@@ -81,11 +91,29 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The token to retrieve the next set of results.
+     * When <code>true</code>, the action returns the thing resources with
+     * attribute values that start with the <code>attributeValue</code>
+     * provided.
+     * </p>
+     * <p>
+     * When <code>false</code>, or not present, the action returns only the
+     * thing resources with attribute values that match the entire
+     * <code>attributeValue</code> provided.
+     * </p>
+     */
+    private Boolean usePrefixAttributeValue;
+
+    /**
+     * <p>
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      *
      * @return <p>
-     *         The token to retrieve the next set of results.
+     *         To retrieve the next set of results, the <code>nextToken</code>
+     *         value from a previous response; otherwise <b>null</b> to receive
+     *         the first set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -94,11 +122,15 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The token to retrieve the next set of results.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token to retrieve the next set of results.
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -107,14 +139,18 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The token to retrieve the next set of results.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            The token to retrieve the next set of results.
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -350,6 +386,120 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
     }
 
     /**
+     * <p>
+     * When <code>true</code>, the action returns the thing resources with
+     * attribute values that start with the <code>attributeValue</code>
+     * provided.
+     * </p>
+     * <p>
+     * When <code>false</code>, or not present, the action returns only the
+     * thing resources with attribute values that match the entire
+     * <code>attributeValue</code> provided.
+     * </p>
+     *
+     * @return <p>
+     *         When <code>true</code>, the action returns the thing resources
+     *         with attribute values that start with the
+     *         <code>attributeValue</code> provided.
+     *         </p>
+     *         <p>
+     *         When <code>false</code>, or not present, the action returns only
+     *         the thing resources with attribute values that match the entire
+     *         <code>attributeValue</code> provided.
+     *         </p>
+     */
+    public Boolean isUsePrefixAttributeValue() {
+        return usePrefixAttributeValue;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the action returns the thing resources with
+     * attribute values that start with the <code>attributeValue</code>
+     * provided.
+     * </p>
+     * <p>
+     * When <code>false</code>, or not present, the action returns only the
+     * thing resources with attribute values that match the entire
+     * <code>attributeValue</code> provided.
+     * </p>
+     *
+     * @return <p>
+     *         When <code>true</code>, the action returns the thing resources
+     *         with attribute values that start with the
+     *         <code>attributeValue</code> provided.
+     *         </p>
+     *         <p>
+     *         When <code>false</code>, or not present, the action returns only
+     *         the thing resources with attribute values that match the entire
+     *         <code>attributeValue</code> provided.
+     *         </p>
+     */
+    public Boolean getUsePrefixAttributeValue() {
+        return usePrefixAttributeValue;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the action returns the thing resources with
+     * attribute values that start with the <code>attributeValue</code>
+     * provided.
+     * </p>
+     * <p>
+     * When <code>false</code>, or not present, the action returns only the
+     * thing resources with attribute values that match the entire
+     * <code>attributeValue</code> provided.
+     * </p>
+     *
+     * @param usePrefixAttributeValue <p>
+     *            When <code>true</code>, the action returns the thing resources
+     *            with attribute values that start with the
+     *            <code>attributeValue</code> provided.
+     *            </p>
+     *            <p>
+     *            When <code>false</code>, or not present, the action returns
+     *            only the thing resources with attribute values that match the
+     *            entire <code>attributeValue</code> provided.
+     *            </p>
+     */
+    public void setUsePrefixAttributeValue(Boolean usePrefixAttributeValue) {
+        this.usePrefixAttributeValue = usePrefixAttributeValue;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the action returns the thing resources with
+     * attribute values that start with the <code>attributeValue</code>
+     * provided.
+     * </p>
+     * <p>
+     * When <code>false</code>, or not present, the action returns only the
+     * thing resources with attribute values that match the entire
+     * <code>attributeValue</code> provided.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param usePrefixAttributeValue <p>
+     *            When <code>true</code>, the action returns the thing resources
+     *            with attribute values that start with the
+     *            <code>attributeValue</code> provided.
+     *            </p>
+     *            <p>
+     *            When <code>false</code>, or not present, the action returns
+     *            only the thing resources with attribute values that match the
+     *            entire <code>attributeValue</code> provided.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListThingsRequest withUsePrefixAttributeValue(Boolean usePrefixAttributeValue) {
+        this.usePrefixAttributeValue = usePrefixAttributeValue;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -369,7 +519,9 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
         if (getAttributeValue() != null)
             sb.append("attributeValue: " + getAttributeValue() + ",");
         if (getThingTypeName() != null)
-            sb.append("thingTypeName: " + getThingTypeName());
+            sb.append("thingTypeName: " + getThingTypeName() + ",");
+        if (getUsePrefixAttributeValue() != null)
+            sb.append("usePrefixAttributeValue: " + getUsePrefixAttributeValue());
         sb.append("}");
         return sb.toString();
     }
@@ -387,6 +539,10 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
                 + ((getAttributeValue() == null) ? 0 : getAttributeValue().hashCode());
         hashCode = prime * hashCode
                 + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getUsePrefixAttributeValue() == null) ? 0 : getUsePrefixAttributeValue()
+                        .hashCode());
         return hashCode;
     }
 
@@ -425,6 +581,11 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
             return false;
         if (other.getThingTypeName() != null
                 && other.getThingTypeName().equals(this.getThingTypeName()) == false)
+            return false;
+        if (other.getUsePrefixAttributeValue() == null ^ this.getUsePrefixAttributeValue() == null)
+            return false;
+        if (other.getUsePrefixAttributeValue() != null
+                && other.getUsePrefixAttributeValue().equals(this.getUsePrefixAttributeValue()) == false)
             return false;
         return true;
     }

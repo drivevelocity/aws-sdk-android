@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class UserPoolDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS Lambda configuration information in a user pool description.
+     * The Lambda configuration information in a user pool description.
      * </p>
      */
     private LambdaConfigType lambdaConfig;
@@ -192,12 +192,11 @@ public class UserPoolDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS Lambda configuration information in a user pool description.
+     * The Lambda configuration information in a user pool description.
      * </p>
      *
      * @return <p>
-     *         The AWS Lambda configuration information in a user pool
-     *         description.
+     *         The Lambda configuration information in a user pool description.
      *         </p>
      */
     public LambdaConfigType getLambdaConfig() {
@@ -206,11 +205,11 @@ public class UserPoolDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS Lambda configuration information in a user pool description.
+     * The Lambda configuration information in a user pool description.
      * </p>
      *
      * @param lambdaConfig <p>
-     *            The AWS Lambda configuration information in a user pool
+     *            The Lambda configuration information in a user pool
      *            description.
      *            </p>
      */
@@ -220,14 +219,14 @@ public class UserPoolDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The AWS Lambda configuration information in a user pool description.
+     * The Lambda configuration information in a user pool description.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lambdaConfig <p>
-     *            The AWS Lambda configuration information in a user pool
+     *            The Lambda configuration information in a user pool
      *            description.
      *            </p>
      * @return A reference to this updated object so that method calls can be

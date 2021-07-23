@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,11 +30,17 @@ import com.amazonaws.services.sns.model.*;
  * you to build distributed web-enabled applications. Applications can use
  * Amazon SNS to easily push real-time notification messages to interested
  * subscribers over multiple delivery protocols. For more information about this
- * product see <a
- * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. For
- * detailed information about Amazon SNS features and their associated API
- * calls, see the <a href="https://docs.aws.amazon.com/sns/latest/dg/">Amazon
- * SNS Developer Guide</a>.
+ * product see the <a href="http://aws.amazon.com/sns/">Amazon SNS product
+ * page</a>. For detailed information about Amazon SNS features and their
+ * associated API calls, see the <a
+ * href="https://docs.aws.amazon.com/sns/latest/dg/">Amazon SNS Developer
+ * Guide</a>.
+ * </p>
+ * <p>
+ * For information on the permissions you need to use this API, see <a href=
+ * "https://docs.aws.amazon.com/sns/latest/dg/sns-authentication-and-access-control.html"
+ * >Identity and access management in Amazon SNS</a> in the <i>Amazon SNS
+ * Developer Guide.</i>
  * </p>
  * <p>
  * We also provide SDKs that enable you to access Amazon SNS from your preferred
@@ -49,7 +55,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
     /**
      * <p>
      * Adds a statement to a topic's access control policy, granting access for
-     * the specified AWS accounts to the specified actions.
+     * the specified accounts to the specified actions.
      * </p>
      * 
      * @param addPermissionRequest
@@ -74,7 +80,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
     /**
      * <p>
      * Adds a statement to a topic's access control policy, granting access for
-     * the specified AWS accounts to the specified actions.
+     * the specified accounts to the specified actions.
      * </p>
      * 
      * @param addPermissionRequest
@@ -513,12 +519,97 @@ public interface AmazonSNSAsync extends AmazonSNS {
 
     /**
      * <p>
+     * Adds a destination phone number to an account in the SMS sandbox and
+     * sends a one-time password (OTP) to that phone number.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param createSMSSandboxPhoneNumberRequest
+     * @return A Java Future object containing the response from the
+     *         CreateSMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws OptedOutException
+     * @throws UserErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<CreateSMSSandboxPhoneNumberResult> createSMSSandboxPhoneNumberAsync(
+            CreateSMSSandboxPhoneNumberRequest createSMSSandboxPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Adds a destination phone number to an account in the SMS sandbox and
+     * sends a one-time password (OTP) to that phone number.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param createSMSSandboxPhoneNumberRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateSMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws OptedOutException
+     * @throws UserErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<CreateSMSSandboxPhoneNumberResult> createSMSSandboxPhoneNumberAsync(
+            CreateSMSSandboxPhoneNumberRequest createSMSSandboxPhoneNumberRequest,
+            AsyncHandler<CreateSMSSandboxPhoneNumberRequest, CreateSMSSandboxPhoneNumberResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a topic to which notifications can be published. Users can create
-     * at most 100,000 topics. For more information, see <a
-     * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. This
-     * action is idempotent, so if the requester already owns a topic with the
-     * specified name, that topic's ARN is returned without creating a new
-     * topic.
+     * at most 100,000 standard topics (at most 1,000 FIFO topics). For more
+     * information, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html"
+     * >Creating an Amazon SNS topic</a> in the <i>Amazon SNS Developer
+     * Guide</i>. This action is idempotent, so if the requester already owns a
+     * topic with the specified name, that topic's ARN is returned without
+     * creating a new topic.
      * </p>
      * 
      * @param createTopicRequest <p>
@@ -550,11 +641,13 @@ public interface AmazonSNSAsync extends AmazonSNS {
     /**
      * <p>
      * Creates a topic to which notifications can be published. Users can create
-     * at most 100,000 topics. For more information, see <a
-     * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. This
-     * action is idempotent, so if the requester already owns a topic with the
-     * specified name, that topic's ARN is returned without creating a new
-     * topic.
+     * at most 100,000 standard topics (at most 1,000 FIFO topics). For more
+     * information, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html"
+     * >Creating an Amazon SNS topic</a> in the <i>Amazon SNS Developer
+     * Guide</i>. This action is idempotent, so if the requester already owns a
+     * topic with the specified name, that topic's ARN is returned without
+     * creating a new topic.
      * </p>
      * 
      * @param createTopicRequest <p>
@@ -720,6 +813,89 @@ public interface AmazonSNSAsync extends AmazonSNS {
     Future<Void> deletePlatformApplicationAsync(
             DeletePlatformApplicationRequest deletePlatformApplicationRequest,
             AsyncHandler<DeletePlatformApplicationRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an account's verified or pending phone number from the SMS
+     * sandbox.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param deleteSMSSandboxPhoneNumberRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteSMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws UserErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<DeleteSMSSandboxPhoneNumberResult> deleteSMSSandboxPhoneNumberAsync(
+            DeleteSMSSandboxPhoneNumberRequest deleteSMSSandboxPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an account's verified or pending phone number from the SMS
+     * sandbox.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param deleteSMSSandboxPhoneNumberRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteSMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws UserErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<DeleteSMSSandboxPhoneNumberResult> deleteSMSSandboxPhoneNumberAsync(
+            DeleteSMSSandboxPhoneNumberRequest deleteSMSSandboxPhoneNumberRequest,
+            AsyncHandler<DeleteSMSSandboxPhoneNumberRequest, DeleteSMSSandboxPhoneNumberResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -988,6 +1164,83 @@ public interface AmazonSNSAsync extends AmazonSNS {
 
     /**
      * <p>
+     * Retrieves the SMS sandbox status for the calling account in the target
+     * Region.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param getSMSSandboxAccountStatusRequest
+     * @return A Java Future object containing the response from the
+     *         GetSMSSandboxAccountStatus service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<GetSMSSandboxAccountStatusResult> getSMSSandboxAccountStatusAsync(
+            GetSMSSandboxAccountStatusRequest getSMSSandboxAccountStatusRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the SMS sandbox status for the calling account in the target
+     * Region.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param getSMSSandboxAccountStatusRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetSMSSandboxAccountStatus service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<GetSMSSandboxAccountStatusResult> getSMSSandboxAccountStatusAsync(
+            GetSMSSandboxAccountStatusRequest getSMSSandboxAccountStatusRequest,
+            AsyncHandler<GetSMSSandboxAccountStatusRequest, GetSMSSandboxAccountStatusResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Returns all of the properties of a subscription.
      * </p>
      * 
@@ -1195,6 +1448,69 @@ public interface AmazonSNSAsync extends AmazonSNS {
 
     /**
      * <p>
+     * Lists the calling account's dedicated origination numbers and their
+     * metadata. For more information about origination numbers, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/channels-sms-originating-identities-origination-numbers.html"
+     * >Origination numbers</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param listOriginationNumbersRequest
+     * @return A Java Future object containing the response from the
+     *         ListOriginationNumbers service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InternalErrorException
+     * @throws AuthorizationErrorException
+     * @throws ThrottledException
+     * @throws InvalidParameterException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<ListOriginationNumbersResult> listOriginationNumbersAsync(
+            ListOriginationNumbersRequest listOriginationNumbersRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the calling account's dedicated origination numbers and their
+     * metadata. For more information about origination numbers, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/channels-sms-originating-identities-origination-numbers.html"
+     * >Origination numbers</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param listOriginationNumbersRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListOriginationNumbers service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InternalErrorException
+     * @throws AuthorizationErrorException
+     * @throws ThrottledException
+     * @throws InvalidParameterException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<ListOriginationNumbersResult> listOriginationNumbersAsync(
+            ListOriginationNumbersRequest listOriginationNumbersRequest,
+            AsyncHandler<ListOriginationNumbersRequest, ListOriginationNumbersResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Returns a list of phone numbers that are opted out, meaning you cannot
      * send SMS messages to them.
      * </p>
@@ -1355,6 +1671,87 @@ public interface AmazonSNSAsync extends AmazonSNS {
     Future<ListPlatformApplicationsResult> listPlatformApplicationsAsync(
             ListPlatformApplicationsRequest listPlatformApplicationsRequest,
             AsyncHandler<ListPlatformApplicationsRequest, ListPlatformApplicationsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the calling account's current verified and pending destination
+     * phone numbers in the SMS sandbox.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param listSMSSandboxPhoneNumbersRequest
+     * @return A Java Future object containing the response from the
+     *         ListSMSSandboxPhoneNumbers service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<ListSMSSandboxPhoneNumbersResult> listSMSSandboxPhoneNumbersAsync(
+            ListSMSSandboxPhoneNumbersRequest listSMSSandboxPhoneNumbersRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the calling account's current verified and pending destination
+     * phone numbers in the SMS sandbox.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param listSMSSandboxPhoneNumbersRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListSMSSandboxPhoneNumbers service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<ListSMSSandboxPhoneNumbersResult> listSMSSandboxPhoneNumbersAsync(
+            ListSMSSandboxPhoneNumbersRequest listSMSSandboxPhoneNumbersRequest,
+            AsyncHandler<ListSMSSandboxPhoneNumbersRequest, ListSMSSandboxPhoneNumbersResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1726,8 +2123,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * <important>
      * <p>
-     * You can publish messages only to topics and endpoints in the same AWS
-     * Region.
+     * You can publish messages only to topics and endpoints in the same Region.
      * </p>
      * </important>
      * 
@@ -1792,8 +2188,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * <important>
      * <p>
-     * You can publish messages only to topics and endpoints in the same AWS
-     * Region.
+     * You can publish messages only to topics and endpoints in the same Region.
      * </p>
      * </important>
      * 
@@ -2041,8 +2436,16 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <code>MessageAttributes.entry.N</code> parameter. For more information,
      * see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html"
-     * >Sending an SMS Message</a> in the <i>Amazon SNS Developer Guide</i>.
+     * >Publishing to a mobile phone</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * To use this operation, you must grant the Amazon SNS service principal (
+     * <code>sns.amazonaws.com</code>) permission to perform the
+     * <code>s3:ListBucket</code> action.
+     * </p>
+     * </note>
      * 
      * @param setSMSAttributesRequest <p>
      *            The input for the SetSMSAttributes action.
@@ -2077,8 +2480,16 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <code>MessageAttributes.entry.N</code> parameter. For more information,
      * see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html"
-     * >Sending an SMS Message</a> in the <i>Amazon SNS Developer Guide</i>.
+     * >Publishing to a mobile phone</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * To use this operation, you must grant the Amazon SNS service principal (
+     * <code>sns.amazonaws.com</code>) permission to perform the
+     * <code>s3:ListBucket</code> action.
+     * </p>
+     * </note>
      * 
      * @param setSMSAttributesRequest <p>
      *            The input for the SetSMSAttributes action.
@@ -2232,8 +2643,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
     /**
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
-     * HTTP/S or email, or if the endpoint and the topic are not in the same AWS
-     * account, the endpoint owner must the <code>ConfirmSubscription</code>
+     * HTTP/S or email, or if the endpoint and the topic are not in the same
+     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
      * action to confirm the subscription.
      * </p>
      * <p>
@@ -2271,8 +2682,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
     /**
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
-     * HTTP/S or email, or if the endpoint and the topic are not in the same AWS
-     * account, the endpoint owner must the <code>ConfirmSubscription</code>
+     * HTTP/S or email, or if the endpoint and the topic are not in the same
+     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
      * action to confirm the subscription.
      * </p>
      * <p>
@@ -2346,8 +2757,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </li>
      * <li>
      * <p>
-     * Tagging actions are limited to 10 TPS per AWS account, per AWS region. If
-     * your application requires a higher throughput, file a <a href=
+     * Tagging actions are limited to 10 TPS per account, per Region. If your
+     * application requires a higher throughput, file a <a href=
      * "https://console.aws.amazon.com/support/home#/case/create?issueType=technical"
      * >technical support request</a>.
      * </p>
@@ -2410,8 +2821,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </li>
      * <li>
      * <p>
-     * Tagging actions are limited to 10 TPS per AWS account, per AWS region. If
-     * your application requires a higher throughput, file a <a href=
+     * Tagging actions are limited to 10 TPS per account, per Region. If your
+     * application requires a higher throughput, file a <a href=
      * "https://console.aws.amazon.com/support/home#/case/create?issueType=technical"
      * >technical support request</a>.
      * </p>
@@ -2449,7 +2860,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <p>
      * Deletes a subscription. If the subscription requires authentication for
      * deletion, only the owner of the subscription or the topic's owner can
-     * unsubscribe, and an AWS signature is required. If the
+     * unsubscribe, and an Amazon Web Services signature is required. If the
      * <code>Unsubscribe</code> call does not require authentication and the
      * requester is not the subscription owner, a final cancellation message is
      * delivered to the endpoint, so that the endpoint owner can easily
@@ -2486,7 +2897,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <p>
      * Deletes a subscription. If the subscription requires authentication for
      * deletion, only the owner of the subscription or the topic's owner can
-     * unsubscribe, and an AWS signature is required. If the
+     * unsubscribe, and an Amazon Web Services signature is required. If the
      * <code>Unsubscribe</code> call does not require authentication and the
      * requester is not the subscription owner, a final cancellation message is
      * delivered to the endpoint, so that the endpoint owner can easily
@@ -2585,6 +2996,89 @@ public interface AmazonSNSAsync extends AmazonSNS {
      */
     Future<UntagResourceResult> untagResourceAsync(UntagResourceRequest untagResourceRequest,
             AsyncHandler<UntagResourceRequest, UntagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Verifies a destination phone number with a one-time password (OTP) for
+     * the calling account.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param verifySMSSandboxPhoneNumberRequest
+     * @return A Java Future object containing the response from the
+     *         VerifySMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws VerificationException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<VerifySMSSandboxPhoneNumberResult> verifySMSSandboxPhoneNumberAsync(
+            VerifySMSSandboxPhoneNumberRequest verifySMSSandboxPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Verifies a destination phone number with a one-time password (OTP) for
+     * the calling account.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your account is in
+     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+     * you to try Amazon SNS features without risking your reputation as an SMS
+     * sender. While your account is in the SMS sandbox, you can use all of the
+     * features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param verifySMSSandboxPhoneNumberRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         VerifySMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws VerificationException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    Future<VerifySMSSandboxPhoneNumberResult> verifySMSSandboxPhoneNumberAsync(
+            VerifySMSSandboxPhoneNumberRequest verifySMSSandboxPhoneNumberRequest,
+            AsyncHandler<VerifySMSSandboxPhoneNumberRequest, VerifySMSSandboxPhoneNumberResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
 }

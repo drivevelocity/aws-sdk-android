@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,11 +23,14 @@ import java.util.Map;
  */
 public enum KeyState {
 
+    Creating("Creating"),
     Enabled("Enabled"),
     Disabled("Disabled"),
     PendingDeletion("PendingDeletion"),
     PendingImport("PendingImport"),
-    Unavailable("Unavailable");
+    PendingReplicaDeletion("PendingReplicaDeletion"),
+    Unavailable("Unavailable"),
+    Updating("Updating");
 
     private String value;
 
@@ -43,11 +46,14 @@ public enum KeyState {
     private static final Map<String, KeyState> enumMap;
     static {
         enumMap = new HashMap<String, KeyState>();
+        enumMap.put("Creating", Creating);
         enumMap.put("Enabled", Enabled);
         enumMap.put("Disabled", Disabled);
         enumMap.put("PendingDeletion", PendingDeletion);
         enumMap.put("PendingImport", PendingImport);
+        enumMap.put("PendingReplicaDeletion", PendingReplicaDeletion);
         enumMap.put("Unavailable", Unavailable);
+        enumMap.put("Updating", Updating);
     }
 
     /**

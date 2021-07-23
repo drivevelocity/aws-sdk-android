@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,6 +38,9 @@ public class AuthorizerSummary implements Serializable {
      * <p>
      * The authorizer ARN.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      */
     private String authorizerArn;
 
@@ -102,6 +105,9 @@ public class AuthorizerSummary implements Serializable {
      * <p>
      * The authorizer ARN.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @return <p>
      *         The authorizer ARN.
@@ -115,6 +121,9 @@ public class AuthorizerSummary implements Serializable {
      * <p>
      * The authorizer ARN.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param authorizerArn <p>
      *            The authorizer ARN.
@@ -131,6 +140,9 @@ public class AuthorizerSummary implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param authorizerArn <p>
      *            The authorizer ARN.

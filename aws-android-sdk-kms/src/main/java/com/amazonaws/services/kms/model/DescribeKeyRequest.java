@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -80,9 +80,55 @@ import com.amazonaws.AmazonWebServiceRequest;
  * response.
  * </p>
  * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN or alias ARN in the value of the KeyId parameter.
+ * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
+ * different AWS account, specify the key ARN or alias ARN in the value of the
+ * <code>KeyId</code> parameter.
  * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:DescribeKey</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>GetKeyPolicy</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GetKeyRotationStatus</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListAliases</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListGrants</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListKeys</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListResourceTags</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListRetirableGrants</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class DescribeKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -97,10 +143,9 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -145,9 +190,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -165,10 +212,9 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -217,9 +263,9 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *         <code>Arn</code> in the response.
      *         </p>
      *         <p>
-     *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
+     *         To specify a CMK, use its key ID, key ARN, alias name, or alias
+     *         ARN. When using an alias name, prefix it with
+     *         <code>"alias/"</code>. To specify a CMK in a different AWS
      *         account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
@@ -271,10 +317,9 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -323,10 +368,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            <code>Arn</code> in the response.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            alias ARN. When using an alias name, prefix it with
+     *            <code>"alias/"</code>. To specify a CMK in a different AWS
+     *            account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -377,10 +422,9 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -432,10 +476,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            <code>Arn</code> in the response.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            alias ARN. When using an alias name, prefix it with
+     *            <code>"alias/"</code>. To specify a CMK in a different AWS
+     *            account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -482,9 +526,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -492,9 +538,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *         A list of grant tokens.
      *         </p>
      *         <p>
-     *         For more information, see <a href=
+     *         Use a grant token when your permission to call this operation
+     *         comes from a new grant that has not yet achieved <i>eventual
+     *         consistency</i>. For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     *         >Grant token</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
      */
@@ -507,9 +555,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -517,9 +567,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -537,9 +589,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -550,9 +604,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -573,9 +629,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -586,9 +644,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

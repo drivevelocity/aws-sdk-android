@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@ public interface Request<T> {
      *
      * @param path The path to the resource being requested.
      */
+    @Deprecated
     public void setResourcePath(String path);
 
     /**
@@ -68,6 +69,7 @@ public interface Request<T> {
      *
      * @return The path to the resource being requested.
      */
+    @Deprecated
     public String getResourcePath();
 
     /**
@@ -152,6 +154,24 @@ public interface Request<T> {
     public void setContent(InputStream content);
 
     /**
+     * Returns the optional prefix to prepend to the request endpoint's host
+     * before sending this request.
+     *
+     * @return the optional prefix to prepend to the request endpoint host
+     *          before sending this request.
+     */
+    public String getHostPrefix();
+
+    /**
+     * Sets the optional prefix to prepend to the request endpoint's host before
+     * sending this request.
+     *
+     * @param hostPrefix The optional prefix to prepend to the request endpoint
+     *                   host.
+     */
+    public void setHostPrefix(String hostPrefix);
+
+    /**
      * Returns the name of the Amazon service this request is for.
      *
      * @return The name of the Amazon service this request is for.
@@ -175,7 +195,16 @@ public interface Request<T> {
      *
      * @return The optional value for time offset (in seconds) for this request.
      */
-    public int getTimeOffset();
+    public long getTimeOffset();
+
+    /**
+     * This is deprecated, use {@link #setTimeOffset(long)} instead.
+     *
+     * @param timeOffset The optional value for time offset (in seconds) for
+     *                   this request.
+     */
+    @Deprecated
+    public void setTimeOffset(int timeOffset);
 
     /**
      * Sets the optional value for time offset for this request. This will be
@@ -186,7 +215,16 @@ public interface Request<T> {
      * @param timeOffset The optional value for time offset (in seconds) for
      *            this request.
      */
-    public void setTimeOffset(int timeOffset);
+    public void setTimeOffset(long timeOffset);
+
+    /**
+     * This is deprecated, use {@link #withTimeOffset(long)} instead.
+     * @param timeOffset the time offset for the request.
+     *
+     * @return The updated request object.
+     */
+    @Deprecated
+    public Request<T> withTimeOffset(int timeOffset);
 
     /**
      * Sets the optional value for time offset for this request. This will be
@@ -197,7 +235,7 @@ public interface Request<T> {
      *
      * @return The updated request object.
      */
-    public Request<T> withTimeOffset(int timeOffset);
+    public Request<T> withTimeOffset(long timeOffset);
 
     /**
      * @return the request metrics.
@@ -226,4 +264,16 @@ public interface Request<T> {
      * @param streaming the streaming flag.
      */
     public void setStreaming(boolean streaming);
+
+    /**
+     * Get Encoded Uri Resource Path
+     */
+    public String getEncodedUriResourcePath();
+
+    /**
+     *
+     * Set Encoded Uri Resource Path
+     * @param encodedUriResourcePath encoded uri resource path
+     */
+    public void setEncodedResourcePath(String encodedUriResourcePath);
 }

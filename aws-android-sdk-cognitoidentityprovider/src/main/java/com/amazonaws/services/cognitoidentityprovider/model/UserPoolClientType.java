@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -305,8 +305,8 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      */
@@ -375,6 +375,17 @@ public class UserPoolClientType implements Serializable {
      * <b>Allowed Values: </b>LEGACY, ENABLED
      */
     private String preventUserExistenceErrors;
+
+    /**
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     */
+    private Boolean enableTokenRevocation;
 
     /**
      * <p>
@@ -2447,17 +2458,17 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      *
      * @return <p>
      *         The allowed OAuth scopes. Possible values provided by OAuth are:
      *         <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     *         <code>profile</code>. Possible values provided by AWS are:
-     *         <code>aws.cognito.signin.user.admin</code>. Custom scopes created
-     *         in Resource Servers are also supported.
+     *         <code>profile</code>. Possible values provided by Amazon Web
+     *         Services are: <code>aws.cognito.signin.user.admin</code>. Custom
+     *         scopes created in Resource Servers are also supported.
      *         </p>
      */
     public java.util.List<String> getAllowedOAuthScopes() {
@@ -2468,8 +2479,8 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      *
@@ -2477,7 +2488,7 @@ public class UserPoolClientType implements Serializable {
      *            The allowed OAuth scopes. Possible values provided by OAuth
      *            are: <code>phone</code>, <code>email</code>,
      *            <code>openid</code>, and <code>profile</code>. Possible values
-     *            provided by AWS are:
+     *            provided by Amazon Web Services are:
      *            <code>aws.cognito.signin.user.admin</code>. Custom scopes
      *            created in Resource Servers are also supported.
      *            </p>
@@ -2495,8 +2506,8 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      * <p>
@@ -2507,7 +2518,7 @@ public class UserPoolClientType implements Serializable {
      *            The allowed OAuth scopes. Possible values provided by OAuth
      *            are: <code>phone</code>, <code>email</code>,
      *            <code>openid</code>, and <code>profile</code>. Possible values
-     *            provided by AWS are:
+     *            provided by Amazon Web Services are:
      *            <code>aws.cognito.signin.user.admin</code>. Custom scopes
      *            created in Resource Servers are also supported.
      *            </p>
@@ -2528,8 +2539,8 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      * <p>
@@ -2540,7 +2551,7 @@ public class UserPoolClientType implements Serializable {
      *            The allowed OAuth scopes. Possible values provided by OAuth
      *            are: <code>phone</code>, <code>email</code>,
      *            <code>openid</code>, and <code>profile</code>. Possible values
-     *            provided by AWS are:
+     *            provided by Amazon Web Services are:
      *            <code>aws.cognito.signin.user.admin</code>. Custom scopes
      *            created in Resource Servers are also supported.
      *            </p>
@@ -3146,6 +3157,100 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether token revocation is enabled for the user pool
+     *         client. When you create a new user pool client, token revocation
+     *         is enabled by default. For more information about revoking
+     *         tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
+     *         </p>
+     */
+    public Boolean isEnableTokenRevocation() {
+        return enableTokenRevocation;
+    }
+
+    /**
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether token revocation is enabled for the user pool
+     *         client. When you create a new user pool client, token revocation
+     *         is enabled by default. For more information about revoking
+     *         tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
+     *         </p>
+     */
+    public Boolean getEnableTokenRevocation() {
+        return enableTokenRevocation;
+    }
+
+    /**
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     *
+     * @param enableTokenRevocation <p>
+     *            Indicates whether token revocation is enabled for the user
+     *            pool client. When you create a new user pool client, token
+     *            revocation is enabled by default. For more information about
+     *            revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
+     *            </p>
+     */
+    public void setEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
+    }
+
+    /**
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enableTokenRevocation <p>
+     *            Indicates whether token revocation is enabled for the user
+     *            pool client. When you create a new user pool client, token
+     *            revocation is enabled by default. For more information about
+     *            revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserPoolClientType withEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -3200,7 +3305,9 @@ public class UserPoolClientType implements Serializable {
         if (getAnalyticsConfiguration() != null)
             sb.append("AnalyticsConfiguration: " + getAnalyticsConfiguration() + ",");
         if (getPreventUserExistenceErrors() != null)
-            sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors());
+            sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors() + ",");
+        if (getEnableTokenRevocation() != null)
+            sb.append("EnableTokenRevocation: " + getEnableTokenRevocation());
         sb.append("}");
         return sb.toString();
     }
@@ -3258,6 +3365,9 @@ public class UserPoolClientType implements Serializable {
                 * hashCode
                 + ((getPreventUserExistenceErrors() == null) ? 0 : getPreventUserExistenceErrors()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getEnableTokenRevocation() == null) ? 0 : getEnableTokenRevocation().hashCode());
         return hashCode;
     }
 
@@ -3386,6 +3496,11 @@ public class UserPoolClientType implements Serializable {
         if (other.getPreventUserExistenceErrors() != null
                 && other.getPreventUserExistenceErrors().equals(
                         this.getPreventUserExistenceErrors()) == false)
+            return false;
+        if (other.getEnableTokenRevocation() == null ^ this.getEnableTokenRevocation() == null)
+            return false;
+        if (other.getEnableTokenRevocation() != null
+                && other.getEnableTokenRevocation().equals(this.getEnableTokenRevocation()) == false)
             return false;
         return true;
     }

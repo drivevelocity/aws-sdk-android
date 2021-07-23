@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets information about a single audit finding. Properties include the reason
- * for noncompliance, the severity of the issue, and when the audit that
- * returned the finding was started.
+ * for noncompliance, the severity of the issue, and the start time when the
+ * audit that returned the finding.
  * </p>
  */
 public class DescribeAuditFindingRequest extends AmazonWebServiceRequest implements Serializable {

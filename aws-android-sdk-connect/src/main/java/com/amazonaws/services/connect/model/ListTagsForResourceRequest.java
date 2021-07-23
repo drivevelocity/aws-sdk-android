@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,6 +22,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Lists the tags for the specified resource.
+ * </p>
+ * <p>
+ * For sample policies that use tags, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html"
+ * >Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect
+ * Administrator Guide</i>.
  * </p>
  */
 public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {

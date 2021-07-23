@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,11 @@ import java.util.Map;
  */
 public enum CLMLanguageCode {
 
-    EnUS("en-US");
+    EnUS("en-US"),
+    HiIN("hi-IN"),
+    EsUS("es-US"),
+    EnGB("en-GB"),
+    EnAU("en-AU");
 
     private String value;
 
@@ -40,6 +44,10 @@ public enum CLMLanguageCode {
     static {
         enumMap = new HashMap<String, CLMLanguageCode>();
         enumMap.put("en-US", EnUS);
+        enumMap.put("hi-IN", HiIN);
+        enumMap.put("es-US", EsUS);
+        enumMap.put("en-GB", EnGB);
+        enumMap.put("en-AU", EnAU);
     }
 
     /**

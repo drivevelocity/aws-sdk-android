@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,9 @@ public enum ComparisonOperator {
     InCidrSet("in-cidr-set"),
     NotInCidrSet("not-in-cidr-set"),
     InPortSet("in-port-set"),
-    NotInPortSet("not-in-port-set");
+    NotInPortSet("not-in-port-set"),
+    InSet("in-set"),
+    NotInSet("not-in-set");
 
     private String value;
 
@@ -54,6 +56,8 @@ public enum ComparisonOperator {
         enumMap.put("not-in-cidr-set", NotInCidrSet);
         enumMap.put("in-port-set", InPortSet);
         enumMap.put("not-in-port-set", NotInPortSet);
+        enumMap.put("in-set", InSet);
+        enumMap.put("not-in-set", NotInSet);
     }
 
     /**

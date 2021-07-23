@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,30 +21,23 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Generates a unique symmetric data key. This operation returns a plaintext
- * copy of the data key and a copy that is encrypted under a customer master key
- * (CMK) that you specify. You can use the plaintext key to encrypt your data
- * outside of AWS KMS and store the encrypted data key with the encrypted data.
+ * Generates a unique symmetric data key for client-side encryption. This
+ * operation returns a plaintext copy of the data key and a copy that is
+ * encrypted under a customer master key (CMK) that you specify. You can use the
+ * plaintext key to encrypt your data outside of AWS KMS and store the encrypted
+ * data key with the encrypted data.
  * </p>
  * <p>
  * <code>GenerateDataKey</code> returns a unique data key for each request. The
- * bytes in the key are not related to the caller or CMK that is used to encrypt
- * the data key.
+ * bytes in the plaintext key are not related to the caller or the CMK.
  * </p>
  * <p>
  * To generate a data key, specify the symmetric CMK that will be used to
  * encrypt the data key. You cannot use an asymmetric CMK to generate data keys.
- * To get the type of your CMK, use the <a>DescribeKey</a> operation.
- * </p>
- * <p>
- * You must also specify the length of the data key. Use either the
- * <code>KeySpec</code> or <code>NumberOfBytes</code> parameters (but not both).
- * For 128-bit and 256-bit data keys, use the <code>KeySpec</code> parameter.
- * </p>
- * <p>
- * If the operation succeeds, the plaintext copy of the data key is in the
- * <code>Plaintext</code> field of the response, and the encrypted copy of the
- * data key in the <code>CiphertextBlob</code> field.
+ * To get the type of your CMK, use the <a>DescribeKey</a> operation. You must
+ * also specify the length of the data key. Use either the <code>KeySpec</code>
+ * or <code>NumberOfBytes</code> parameters (but not both). For 128-bit and
+ * 256-bit data keys, use the <code>KeySpec</code> parameter.
  * </p>
  * <p>
  * To get only an encrypted copy of the data key, use
@@ -58,7 +51,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * encryption operation. If you specify an <code>EncryptionContext</code>, you
  * must specify the same encryption context (a case-sensitive exact match) when
  * decrypting the encrypted data key. Otherwise, the request to decrypt fails
- * with an InvalidCiphertextException. For more information, see <a href=
+ * with an <code>InvalidCiphertextException</code>. For more information, see <a
+ * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
  * >Encryption Context</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
@@ -67,35 +61,48 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The CMK that you use for this operation must be in a compatible key state.
  * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
- * Management Service Developer Guide</i>.
+ * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
+ * </p>
+ * <p>
+ * <b>How to use your data key</b>
  * </p>
  * <p>
  * We recommend that you use the following pattern to encrypt data locally in
- * your application:
+ * your application. You can write your own code or use a client-side encryption
+ * library, such as the <a
+ * href="https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/">AWS
+ * Encryption SDK</a>, the <a href=
+ * "https://docs.aws.amazon.com/dynamodb-encryption-client/latest/devguide/"
+ * >Amazon DynamoDB Encryption Client</a>, or <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+ * >Amazon S3 client-side encryption</a> to do these tasks for you.
+ * </p>
+ * <p>
+ * To encrypt data outside of AWS KMS:
  * </p>
  * <ol>
  * <li>
  * <p>
- * Use the <code>GenerateDataKey</code> operation to get a data encryption key.
+ * Use the <code>GenerateDataKey</code> operation to get a data key.
  * </p>
  * </li>
  * <li>
  * <p>
- * Use the plaintext data key (returned in the <code>Plaintext</code> field of
- * the response) to encrypt data locally, then erase the plaintext data key from
- * memory.
+ * Use the plaintext data key (in the <code>Plaintext</code> field of the
+ * response) to encrypt your data outside of AWS KMS. Then erase the plaintext
+ * data key from memory.
  * </p>
  * </li>
  * <li>
  * <p>
- * Store the encrypted data key (returned in the <code>CiphertextBlob</code>
- * field of the response) alongside the locally encrypted data.
+ * Store the encrypted data key (in the <code>CiphertextBlob</code> field of the
+ * response) with the encrypted data.
  * </p>
  * </li>
  * </ol>
  * <p>
- * To decrypt data locally:
+ * To decrypt data outside of AWS KMS:
  * </p>
  * <ol>
  * <li>
@@ -106,11 +113,51 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Use the plaintext data key to decrypt data locally, then erase the plaintext
- * data key from memory.
+ * Use the plaintext data key to decrypt data outside of AWS KMS, then erase the
+ * plaintext data key from memory.
  * </p>
  * </li>
  * </ol>
+ * <p>
+ * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
+ * different AWS account, specify the key ARN or alias ARN in the value of the
+ * <code>KeyId</code> parameter.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:GenerateDataKey</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>Decrypt</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>Encrypt</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyPair</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyPairWithoutPlaintext</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyWithoutPlaintext</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -118,10 +165,9 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * Identifies the symmetric CMK that encrypts the data key.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -223,9 +269,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -236,10 +284,9 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * Identifies the symmetric CMK that encrypts the data key.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -281,9 +328,9 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      *         Identifies the symmetric CMK that encrypts the data key.
      *         </p>
      *         <p>
-     *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
+     *         To specify a CMK, use its key ID, key ARN, alias name, or alias
+     *         ARN. When using an alias name, prefix it with
+     *         <code>"alias/"</code>. To specify a CMK in a different AWS
      *         account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
@@ -328,10 +375,9 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * Identifies the symmetric CMK that encrypts the data key.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -373,10 +419,10 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      *            Identifies the symmetric CMK that encrypts the data key.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            alias ARN. When using an alias name, prefix it with
+     *            <code>"alias/"</code>. To specify a CMK in a different AWS
+     *            account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -420,10 +466,9 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * Identifies the symmetric CMK that encrypts the data key.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
+     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
+     * CMK in a different AWS account, you must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -468,10 +513,10 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      *            Identifies the symmetric CMK that encrypts the data key.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-     *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            alias ARN. When using an alias name, prefix it with
+     *            <code>"alias/"</code>. To specify a CMK in a different AWS
+     *            account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -978,9 +1023,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -988,9 +1035,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      *         A list of grant tokens.
      *         </p>
      *         <p>
-     *         For more information, see <a href=
+     *         Use a grant token when your permission to call this operation
+     *         comes from a new grant that has not yet achieved <i>eventual
+     *         consistency</i>. For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     *         >Grant token</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
      */
@@ -1003,9 +1052,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -1013,9 +1064,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -1033,9 +1086,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -1046,9 +1101,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1069,9 +1126,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -1082,9 +1141,11 @@ public class GenerateDataKeyRequest extends AmazonWebServiceRequest implements S
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
