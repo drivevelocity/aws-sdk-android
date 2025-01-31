@@ -1,5 +1,7 @@
 # AWS SDK for Android 
 
+*** This forked repository is no longer deployed or maintained *** 
+
 [![DiscordChat](https://img.shields.io/discord/308323056592486420?logo=discord)](https://discord.gg/jWVbPfC)
 [![GitHub release](https://img.shields.io/github/release/aws-amplify/aws-sdk-android.svg)](https://github.com/aws-amplify/aws-sdk-android/releases)
 [![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-core.svg)](https://search.maven.org/search?q=a:aws-android-sdk-core)
